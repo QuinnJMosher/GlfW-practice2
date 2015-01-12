@@ -1,0 +1,19 @@
+﻿Build started 1/12/2015 11:06:47 AM.
+     1>Project "C:\Users\quinn.mosher\Documents\GitHub\glfw-practice\GlfwPractice\GlfwPractice\GlfwPractice.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\quinn.mosher\Documents\GitHub\glfw-practice\GlfwPractice\\glfw-3.0.4.bin.WIN32\include" /I"C:\Users\quinn.mosher\Documents\GitHub\glfw-practice\GlfwPractice\\glew-1.11.0\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt sorce\main.cpp sorce\VideoInfo.cpp
+         VideoInfo.cpp
+         main.cpp
+     1>c:\users\quinn.mosher\documents\github\glfw-practice\glfwpractice\glfwpractice\sorce\main.cpp(24): error C2228: left of '.GetWindow' must have class/struct/union
+                 type is 'VideoInfo *'
+                 did you intend to use '->' instead?
+     1>c:\users\quinn.mosher\documents\github\glfw-practice\glfwpractice\glfwpractice\sorce\main.cpp(24): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice\glfwpractice\glfwpractice\sorce\main.cpp(65): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice\glfwpractice\glfwpractice\sorce\main.cpp(67): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice\glfwpractice\glfwpractice\sorce\main.cpp(69): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         Generating Code...
+     1>Done Building Project "C:\Users\quinn.mosher\Documents\GitHub\glfw-practice\GlfwPractice\GlfwPractice\GlfwPractice.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.99
