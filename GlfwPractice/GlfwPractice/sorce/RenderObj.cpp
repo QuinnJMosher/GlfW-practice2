@@ -320,3 +320,32 @@ void RenderObj::RenderPoint(float in_x, float in_y, Color in_color) {
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
+
+void RenderObj::RenderShape(Shape in_shape) {
+	in_shape.SyncVBO();
+	glUseProgram(ProgramFlat);
+
+	glUniformMatrix4fv(MatrixIDFlat, 1, GL_FALSE, orthographicProjection);
+
+	glBindBuffer(GL_ARRAY_BUFFER, in_shape.GetVBO());
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float) * 4));
+
+	switch (in_shape.GetShape()) {
+	case shapeType::SHPOINT:
+		glDrawArrays(GL_POINTS, 0, 1);
+		break;
+	case shapeType::TRIANGLE:
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		break;
+	case shapeType::RECTANGLE:
+		glDrawArrays(GL_QUADS, 0, 4);
+		break;
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}

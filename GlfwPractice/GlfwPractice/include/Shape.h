@@ -7,7 +7,7 @@
 #include "Color.h"
 
 enum shapeType {
-	POINT,
+	SHPOINT,
 	TRIANGLE,
 	RECTANGLE
 };
@@ -31,6 +31,7 @@ public:
 
 	shapeType GetShape();
 	void SyncVBO();
+	GLuint GetVBO();
 
 private:
 	GLuint VBO;

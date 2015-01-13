@@ -6,7 +6,7 @@ struct Color {
 	float green;
 	float blue;
 	float alpha;
-	Color();
+	Color() { };
 	Color(float in_r, float in_g, float in_b, float in_a) {
 		red = in_r;
 		green = in_g;

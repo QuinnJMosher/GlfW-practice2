@@ -57,36 +57,39 @@ shapeType Shape::GetShape() {
 }
 
 void Shape::SyncVBO() {
+	vertex* vert;
+	GLvoid* vBuffer;
+
 	if (hasChanged) {
 		switch(shape) {
-		case POINT:
+		case shapeType::SHPOINT:
 			//ready vert
-			vertex* vert = new vertex();
-			(*vert).positions[0] = posX;
-			(*vert).positions[1] = posY;
-			(*vert).positions[2] = 0.0f;
-			(*vert).positions[3] = 0.0f;
+			vert = new vertex[1];
+			vert[0].positions[0] = posX;
+			vert[0].positions[1] = posY;
+			vert[0].positions[2] = 0.0f;
+			vert[0].positions[3] = 1.0f;
 
-			(*vert).colors[0] = color.red;
-			(*vert).colors[1] = color.green;
-			(*vert).colors[2] = color.blue;
-			(*vert).colors[3] = color.alpha;
+			vert[0].colors[0] = color.red;
+			vert[0].colors[1] = color.green;
+			vert[0].colors[2] = color.blue;
+			vert[0].colors[3] = color.alpha;
 
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(vertex), NULL, GL_STATIC_DRAW);
-			GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(vertex) * 1, NULL, GL_STATIC_DRAW);
+			vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 
-			memcpy(vBuffer, vert, sizeof(vertex));
+			memcpy(vBuffer, vert, sizeof(vertex) * 1);
 
 			glUnmapBuffer(GL_ARRAY_BUFFER);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 			(*vert).~vertex();
 			break;
 
-		case TRIANGLE:
+		case shapeType::TRIANGLE:
 			//ready vertecies 
-			vertex* vert = new vertex[3];
+			vert = new vertex[3];
 			for (int i = 0; i < 3; i++) {
 				vert[i].positions[2] = 0;
 				vert[i].positions[3] = 1;
@@ -109,7 +112,7 @@ void Shape::SyncVBO() {
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			glBufferData(GL_ARRAY_BUFFER, sizeof(vertex) * 3, NULL, GL_STATIC_DRAW);
-			GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+			vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 
 			memcpy(vBuffer, vert, sizeof(vertex) * 3);
 
@@ -120,9 +123,9 @@ void Shape::SyncVBO() {
 			}
 			break;
 
-		case RECTANGLE:
+		case shapeType::RECTANGLE:
 			//ready vertecies 
-			vertex* vert = new vertex[4];
+			vert = new vertex[4];
 			for (int i = 0; i < 4; i++) {
 				vert[i].positions[2] = 0;
 				vert[i].positions[3] = 1;
@@ -148,7 +151,7 @@ void Shape::SyncVBO() {
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
 			glBufferData(GL_ARRAY_BUFFER, sizeof(vertex)* 4, NULL, GL_STATIC_DRAW);
-			GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+			vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 
 			memcpy(vBuffer, vert, sizeof(vertex)* 4);
 
@@ -161,4 +164,8 @@ void Shape::SyncVBO() {
 		}
 		hasChanged = false;
 	}
+}
+
+GLuint Shape::GetVBO() {
+	return VBO;
 }
