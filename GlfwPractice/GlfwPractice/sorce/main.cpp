@@ -1,6 +1,3 @@
-#include "GL/glew.h"
-#include "GL/wglew.h"
-#include "GLFW/glfw3.h"
 #include "RenderObj.h"
 
 int main() {
@@ -17,8 +14,9 @@ int main() {
 		//update
 
 		//draw
-		renderer.RenderTriangle(100, 100, 30, 30);
-		renderer.RenderRectangle(320, 240, 40, 50);
+		renderer.RenderPoint(250, 250, Color(1, 1, 1, 1));
+		renderer.RenderTriangle(20, 40, 30, 30, Color(1, 1, 1, 1));
+		renderer.RenderRectangle(100, 300, 20, 20, Color(1, 1, 1, 1));
 
 	}
 

@@ -37,6 +37,9 @@ void RenderObj::Ininitalize(float in_windowHeight, float in_windowWidth, char* w
 
 	//generate a buffer for the generic buffer
 	glGenBuffers(1, &genericVBO);
+
+	//set point size
+	glPointSize(2.0f);
 }
 
 GLuint RenderObj::CreateShader(GLenum a_eShaderType, const char *a_strShaderFile) {
@@ -159,22 +162,18 @@ void RenderObj::ClearScreen() {
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void RenderObj::RenderTriangle(float in_posX, float in_posY, float in_baseWidth, float in_height) {
+void RenderObj::RenderTriangle(float in_posX, float in_posY, float in_baseWidth, float in_height, Color in_color) {
 	//create triangle info
 	vertex* triangle = new vertex[3];
 	for (int i = 0; i < 3; i++) {
 		triangle[i].positions[2] = 0.0f;
 		triangle[i].positions[3] = 1.0f;
 
-		triangle[i].colors[0] = 0.0;
-		triangle[i].colors[1] = 0.0;
-		triangle[i].colors[2] = 0.0;
-		triangle[i].colors[3] = 1.0;
+		triangle[i].colors[0] = in_color.red;
+		triangle[i].colors[1] = in_color.green;
+		triangle[i].colors[2] = in_color.blue;
+		triangle[i].colors[3] = in_color.alpha;
 	}
-
-	triangle[0].colors[0] = 1.0f;//red
-	triangle[1].colors[1] = 1.0f;//green
-	triangle[2].colors[2] = 1.0f;//blue
 
 	//red pos
 	triangle[0].positions[0] = in_posX + (in_baseWidth / 2);
@@ -220,25 +219,18 @@ void RenderObj::RenderTriangle(float in_posX, float in_posY, float in_baseWidth,
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void RenderObj::RenderRectangle(float in_posX, float in_posY, float in_Width, float in_height) {
+void RenderObj::RenderRectangle(float in_posX, float in_posY, float in_Width, float in_height, Color in_color) {
 	//create rectangle info
 	vertex* rectangle = new vertex[4];
 	for (int i = 0; i < 4; i++) {
 		rectangle[i].positions[2] = 0.0f;
 		rectangle[i].positions[3] = 1.0f;
 
-		rectangle[i].colors[0] = 0.0;
-		rectangle[i].colors[1] = 0.0;
-		rectangle[i].colors[2] = 0.0;
-		rectangle[i].colors[3] = 1.0;
+		rectangle[i].colors[0] = in_color.red;
+		rectangle[i].colors[1] = in_color.green;
+		rectangle[i].colors[2] = in_color.blue;
+		rectangle[i].colors[3] = in_color.alpha;
 	}
-
-	rectangle[0].colors[0] = 1.0f;//red
-	rectangle[1].colors[1] = 1.0f;//green
-	rectangle[2].colors[2] = 1.0f;//blue
-	rectangle[3].colors[0] = 1.0f;//white
-	rectangle[3].colors[1] = 1.0f;
-	rectangle[3].colors[2] = 1.0f;
 
 	//red pos
 	rectangle[0].positions[0] = in_posX;
@@ -283,6 +275,53 @@ void RenderObj::RenderRectangle(float in_posX, float in_posY, float in_Width, fl
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float)* 4));
 
 	glDrawArrays(GL_QUADS, 0, 4);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void RenderObj::RenderPoint(float in_x, float in_y, Color in_color) {
+	//set values
+	vertex* point = new vertex();
+	(*point).positions[0] = in_x;
+	(*point).positions[1] = in_y;
+	(*point).positions[2] = 0.0f;
+	(*point).positions[3] = 1.0f;
+
+	(*point).colors[0] = in_color.red;
+	(*point).colors[1] = in_color.green;
+	(*point).colors[2] = in_color.blue;
+	(*point).colors[3] = in_color.alpha;
+
+	//set generic shape buffer to these properties
+	//bind VBO
+	glBindBuffer(GL_ARRAY_BUFFER, genericVBO);
+	//allocate space for vertices on the graphics card
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex) * 1, NULL, GL_STATIC_DRAW);
+	//get pointer to allocated space on the graphics card
+	GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	//copy data to graphics card
+	memcpy(vBuffer, point, sizeof(vertex) * 1);
+	//unmap and unbind buffer
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	//send our orthographic projection info to the shader
+	glUniformMatrix4fv(MatrixIDFlat, 1, GL_FALSE, orthographicProjection);
+
+	//draw
+	//enable shaders
+	glUseProgram(ProgramFlat);
+
+	glBindBuffer(GL_ARRAY_BUFFER, genericVBO);
+
+	//enable the vertex array states
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float)* 4));
+
+	glDrawArrays(GL_POINTS, 0, 1);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

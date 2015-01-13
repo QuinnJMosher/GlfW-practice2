@@ -8,6 +8,21 @@
 #include <string>
 #include <fstream>
 
+
+struct Color {
+	float red;
+	float green;
+	float blue;
+	float alpha;
+
+	Color(float in_r, float in_g, float in_b, float in_a) {
+		red = in_r;
+		green = in_g;
+		blue = in_b;
+		alpha = in_a;
+	}
+};
+
 class RenderObj {
 public:
 	RenderObj();
@@ -17,8 +32,9 @@ public:
 	bool ShouldClose();
 	void ClearScreen();
 
-	void RenderTriangle(float in_posX, float in_posY, float in_baseWidth, float in_height);
-	void RenderRectangle(float in_posX, float in_posY, float in_Width, float in_height);
+	void RenderPoint(float in_x, float in_y, Color in_color = Color(1, 0, 0, 1));
+	void RenderTriangle(float in_posX, float in_posY, float in_baseWidth, float in_height, Color in_color = Color(0, 1, 0, 1));
+	void RenderRectangle(float in_posX, float in_posY, float in_Width, float in_height, Color in_color = Color(0, 0, 1, 1));
 
 private:
 	void OpenWindow(float in_windowHeight, float in_windowWidth, char* windowName);
