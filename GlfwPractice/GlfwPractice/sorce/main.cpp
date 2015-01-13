@@ -5,7 +5,7 @@ int main() {
 	RenderObj renderer = RenderObj();
 
 	renderer.Ininitalize(640, 480, "hello");
-	Shape shape = Shape(shapeType::SHPOINT, 640 / 2, 480 / 2, 10, 10, Color(1, 1, 1, 1));
+	Shape shape = Shape(shapeType::TRIANGLE, 640 / 2, 480 / 2, 40, 40, Color(1, 1, 1, 1));
 
 	//main loop
 	while (!renderer.ShouldClose()) {
@@ -16,7 +16,6 @@ int main() {
 
 		//draw
 		renderer.RenderShape(shape);
-		renderer.RenderPoint(100, 100);
 	}
 
 	glfwTerminate();

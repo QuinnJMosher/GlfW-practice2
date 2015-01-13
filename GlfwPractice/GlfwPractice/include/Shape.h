@@ -33,6 +33,17 @@ public:
 	void SyncVBO();
 	GLuint GetVBO();
 
+	void SetupUV(int in_framesWide, int in_framesTall);
+	void SetFrame(int in_framesWide, int in_framesTall);
+
+	void NextFrameU();
+	void SetFrameU(int in_frame);
+	int GetCurrentFrameU();
+
+	void NextFrameV();
+	void SetFrameV(int in_frame);
+	int GetCurrentFrameV();
+
 private:
 	GLuint VBO;
 	shapeType shape;
@@ -44,6 +55,11 @@ private:
 	float width;
 	float height;
 	Color color;
+
+	float startU;
+	float startV;
+	float widthU;
+	float heightV;
 };
 
 #endif
