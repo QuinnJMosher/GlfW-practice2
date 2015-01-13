@@ -1,10 +1,5 @@
 #include "RenderObj.h"
 
-struct vertex {
-	float positions[4];
-	float colors[4];
-};
-
 RenderObj::RenderObj() { }
 RenderObj::~RenderObj() {
 	//destroy stuff

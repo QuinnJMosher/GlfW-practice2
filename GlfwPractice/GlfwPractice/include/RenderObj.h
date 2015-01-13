@@ -7,21 +7,8 @@
 #include <vector>
 #include <string>
 #include <fstream>
-
-
-struct Color {
-	float red;
-	float green;
-	float blue;
-	float alpha;
-
-	Color(float in_r, float in_g, float in_b, float in_a) {
-		red = in_r;
-		green = in_g;
-		blue = in_b;
-		alpha = in_a;
-	}
-};
+#include "Color.h"
+#include "Vertex.h"
 
 class RenderObj {
 public:
