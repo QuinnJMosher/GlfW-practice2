@@ -17,6 +17,11 @@
   <ItemGroup>
     <ClInclude Include="include\RenderObj.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FlatFragmentShader.glsl" />
+    <None Include="TexturedFragmentShader.glsl" />
+    <None Include="VertexShader.glsl" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A4DD63AC-FF2E-462F-A8EE-B0BF82CF2A64}</ProjectGuid>
     <RootNamespace>GlfwPractice</RootNamespace>

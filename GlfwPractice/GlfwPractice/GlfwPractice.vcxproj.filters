@@ -27,4 +27,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="FlatFragmentShader.glsl" />
+    <None Include="TexturedFragmentShader.glsl" />
+    <None Include="VertexShader.glsl" />
+  </ItemGroup>
 </Project>

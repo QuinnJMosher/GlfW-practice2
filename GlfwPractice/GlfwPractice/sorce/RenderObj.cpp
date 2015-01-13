@@ -1,23 +1,27 @@
 #include "RenderObj.h"
 
-RenderObj::RenderObj() {
-	isInitalized = false;
-}
+struct vertex {
+	float positions[4];
+	float colors[4];
+};
+
+RenderObj::RenderObj() { }
 RenderObj::~RenderObj() {
 	//destroy stuff
 }
 
 void RenderObj::OpenWindow(float in_windowHeight, float in_windowWidth, char* in_windowName) {
-	assert(isInitalized);
 	window = glfwCreateWindow(in_windowHeight, in_windowWidth, in_windowName, NULL, NULL);
 	assert(window != nullptr);
 
 	glfwMakeContextCurrent(window);
 }
 
-void RenderObj::Ininitalize() {
+void RenderObj::Ininitalize(float in_windowHeight, float in_windowWidth, char* windowName) {
 	//start glfw
 	assert(glfwInit());
+
+	OpenWindow(in_windowHeight, in_windowWidth, windowName);
 
 	//start glew
 	assert(glewInit() == GLEW_OK);
@@ -30,6 +34,9 @@ void RenderObj::Ininitalize() {
 
 	//make ortho projection
 	orthographicProjection = getOrtho(0, 640, 0, 480, 0, 100);
+
+	//generate a buffer for the generic buffer
+	glGenBuffers(1, &genericVBO);
 }
 
 GLuint RenderObj::CreateShader(GLenum a_eShaderType, const char *a_strShaderFile) {
@@ -139,14 +146,143 @@ float* RenderObj::getOrtho(float left, float right, float bottom, float top, flo
 
 //post init functions
 bool RenderObj::ShouldClose() {
-	return glfwWindowShouldClose(window);
+	if (glfwWindowShouldClose(window)) {
+		return true;
+	}
+	glfwPollEvents();
+	glfwSwapBuffers(window);
+	return false;
 }
 
 void RenderObj::ClearScreen() {
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void RenderObj::RenderTriangle(float in_posX, float in_posY, float in_baseWidth, float in_height) {
+	//create triangle info
+	vertex* triangle = new vertex[3];
+	for (int i = 0; i < 3; i++) {
+		triangle[i].positions[2] = 0.0f;
+		triangle[i].positions[3] = 1.0f;
 
+		triangle[i].colors[0] = 0.0;
+		triangle[i].colors[1] = 0.0;
+		triangle[i].colors[2] = 0.0;
+		triangle[i].colors[3] = 1.0;
+	}
+
+	triangle[0].colors[0] = 1.0f;//red
+	triangle[1].colors[1] = 1.0f;//green
+	triangle[2].colors[2] = 1.0f;//blue
+
+	//red pos
+	triangle[0].positions[0] = in_posX + (in_baseWidth / 2);
+	triangle[0].positions[1] = in_posY;
+	//green pos
+	triangle[1].positions[0] = in_posX;
+	triangle[1].positions[1] = in_posY - in_height;
+	//blue pos
+	triangle[2].positions[0] = in_posX + in_baseWidth;
+	triangle[2].positions[1] = in_posY - in_height;
+
+	//set generic shape buffer to these properties
+	//bind VBO
+	glBindBuffer(GL_ARRAY_BUFFER, genericVBO);
+	//allocate space for vertices on the graphics card
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex)* 3, NULL, GL_STATIC_DRAW);
+	//get pointer to allocated space on the graphics card
+	GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	//copy data to graphics card
+	memcpy(vBuffer, triangle, sizeof(vertex)* 3);
+	//unmap and unbind buffer
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	//send our orthographic projection info to the shader
+	glUniformMatrix4fv(MatrixIDFlat, 1, GL_FALSE, orthographicProjection);
+
+	//draw
+	//enable shaders
+	glUseProgram(ProgramFlat);
+
+	glBindBuffer(GL_ARRAY_BUFFER, genericVBO);
+
+	//enable the vertex array states
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float)* 4));
+
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void RenderObj::RenderRectangle(float in_posX, float in_posY, float in_Width, float in_height) {
+	//create rectangle info
+	vertex* rectangle = new vertex[4];
+	for (int i = 0; i < 4; i++) {
+		rectangle[i].positions[2] = 0.0f;
+		rectangle[i].positions[3] = 1.0f;
+
+		rectangle[i].colors[0] = 0.0;
+		rectangle[i].colors[1] = 0.0;
+		rectangle[i].colors[2] = 0.0;
+		rectangle[i].colors[3] = 1.0;
+	}
+
+	rectangle[0].colors[0] = 1.0f;//red
+	rectangle[1].colors[1] = 1.0f;//green
+	rectangle[2].colors[2] = 1.0f;//blue
+	rectangle[3].colors[0] = 1.0f;//white
+	rectangle[3].colors[1] = 1.0f;
+	rectangle[3].colors[2] = 1.0f;
+
+	//red pos
+	rectangle[0].positions[0] = in_posX;
+	rectangle[0].positions[1] = in_posY;
+	//green pos
+	rectangle[1].positions[0] = in_posX;
+	rectangle[1].positions[1] = in_posY - in_height;
+	//blue pos
+	rectangle[2].positions[0] = in_posX + in_Width;
+	rectangle[2].positions[1] = in_posY - in_height;
+	//white pos
+	rectangle[3].positions[0] = in_posX + in_Width;
+	rectangle[3].positions[1] = in_posY;
+
+	//set generic shape buffer to these properties
+	//bind VBO
+	glBindBuffer(GL_ARRAY_BUFFER, genericVBO);
+	//allocate space for vertices on the graphics card
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex)* 4, NULL, GL_STATIC_DRAW);
+	//get pointer to allocated space on the graphics card
+	GLvoid* vBuffer = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	//copy data to graphics card
+	memcpy(vBuffer, rectangle, sizeof(vertex)* 4);
+	//unmap and unbind buffer
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	//send our orthographic projection info to the shader
+	glUniformMatrix4fv(MatrixIDFlat, 1, GL_FALSE, orthographicProjection);
+
+	//draw
+	//enable shaders
+	glUseProgram(ProgramFlat);
+
+	glBindBuffer(GL_ARRAY_BUFFER, genericVBO);
+
+	//enable the vertex array states
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float)* 4));
+
+	glDrawArrays(GL_QUADS, 0, 4);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

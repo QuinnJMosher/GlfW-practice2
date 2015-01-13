@@ -7,15 +7,18 @@ int main() {
 
 	RenderObj renderer = RenderObj();
 
-	renderer.Ininitalize();
-	renderer.OpenWindow(640, 480, "hello");
+	renderer.Ininitalize(640, 480, "hello");
 
 	//main loop
 	while (!renderer.ShouldClose()) {
 		//clear screen
 		renderer.ClearScreen();
 
-		//update goes here
+		//update
+
+		//draw
+		renderer.RenderTriangle(100, 100, 30, 30);
+		renderer.RenderRectangle(320, 240, 40, 50);
 
 	}
 
