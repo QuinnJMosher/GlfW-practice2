@@ -23,6 +23,7 @@ void RenderObj::Ininitalize(float in_windowHeight, float in_windowWidth, char* w
 
 	//create shader program
 	ProgramFlat = CreateProgram("VertexShader.glsl", "FlatFragmentShader.glsl");
+	ProgramTextured = CreateProgram("VertexShader.glsl", "TexturedFragmentShader.glsl");
 
 	//find the position of the matrix variable in the shader so we can send info there later
 	MatrixIDFlat = glGetUniformLocation(ProgramFlat, "MVP");
@@ -348,4 +349,37 @@ void RenderObj::RenderShape(Shape in_shape) {
 	}
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void RenderObj::RenderTexture(Shape in_target, Texture in_source) {
+	in_target.SyncVBO();
+
+	glUniformMatrix4fv(MatrixIDFlat, 1, GL_FALSE, orthographicProjection);
+	glUseProgram(ProgramTextured);
+
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+
+	glBindBuffer(GL_ARRAY_BUFFER, in_target.GetVBO());
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, in_target.GetIBO());
+	glBindTexture(GL_TEXTURE_2D, in_source.GetTextureID());
+
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float)* 4));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float)* 8));
+
+	
+
+	switch (in_target.GetShape()) {
+	case shapeType::TRIANGLE:
+		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_BYTE, NULL);
+		break;
+	case shapeType::RECTANGLE:
+		glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, NULL);
+		break;
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }

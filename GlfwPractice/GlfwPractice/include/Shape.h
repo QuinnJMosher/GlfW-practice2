@@ -32,6 +32,7 @@ public:
 	shapeType GetShape();
 	void SyncVBO();
 	GLuint GetVBO();
+	GLuint GetIBO();
 
 	void SetupUV(int in_framesWide, int in_framesTall);
 	void SetFrame(int in_framesWide, int in_framesTall);
@@ -46,7 +47,10 @@ public:
 
 private:
 	GLuint VBO;
+	GLuint IBO;
 	shapeType shape;
+
+	void SetIBO();
 
 	bool hasChanged;
 

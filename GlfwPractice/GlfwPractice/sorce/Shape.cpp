@@ -2,6 +2,8 @@
 
 Shape::Shape(shapeType in_type, float in_posX, float in_posY, float in_width, float in_height, Color in_color) {
 	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &IBO);
+	SetIBO();
 	shape = in_type;
 
 	//standard vars
@@ -21,6 +23,24 @@ Shape::Shape(shapeType in_type, float in_posX, float in_posY, float in_width, fl
 	SyncVBO();
 }
 Shape::~Shape() { /*destroy buffer?*/ }
+
+void Shape::SetIBO() {
+	//bind IBO
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+	//allocate space for index info on the graphics card
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 4 * sizeof(char), NULL, GL_STATIC_DRAW);
+	//get pointer to newly allocated space on the graphics card
+	GLvoid* iBuffer = glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_WRITE_ONLY);
+	//specify the order we'd like to draw our vertices.
+	//In this case they are in sequential order
+	for (int i = 0; i < 4; i++)
+	{
+		((char*)iBuffer)[i] = i;
+	}
+	//unmap and unbind
+	glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
 
 void Shape::SetColor(float in_r, float in_g, float in_b, float in_a) {
 	color = Color(in_r, in_g, in_b, in_a);
@@ -189,4 +209,8 @@ void Shape::SyncVBO() {
 
 GLuint Shape::GetVBO() {
 	return VBO;
+}
+
+GLuint Shape::GetIBO() {
+	return IBO;
 }
