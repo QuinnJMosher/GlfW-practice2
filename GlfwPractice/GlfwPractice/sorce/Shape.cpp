@@ -130,17 +130,17 @@ void Shape::SyncVBO() {
 			vert[0].positions[0] = posX + (width / 2);
 			vert[0].positions[1] = posY;
 			vert[0].uv[0] = startU + widthU / 2;
-			vert[0].uv[1] = startV;
+			vert[0].uv[1] = 1.0f - startV;
 
 			vert[1].positions[0] = posX;
 			vert[1].positions[1] = posY - height;
-			vert[1].uv[0] = startU + widthU;
-			vert[1].uv[1] = startV + heightV;
+			vert[1].uv[0] = startU;
+			vert[1].uv[1] = 1.0f - (startV + heightV);
 
 			vert[2].positions[0] = posX + width;
 			vert[2].positions[1] = posY - height;
-			vert[2].uv[0] = startU;
-			vert[2].uv[1] = startV + heightV;
+			vert[2].uv[0] = startU + widthU;
+			vert[2].uv[1] = 1.0f - (startV + heightV);
 
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -172,22 +172,22 @@ void Shape::SyncVBO() {
 			vert[0].positions[0] = posX;
 			vert[0].positions[1] = posY;
 			vert[0].uv[0] = startU;
-			vert[0].uv[1] = startV + heightV;
+			vert[0].uv[1] = 1.0f - startV;
 
 			vert[1].positions[0] = posX;
 			vert[1].positions[1] = posY - height;
 			vert[1].uv[0] = startU;
-			vert[1].uv[1] = startV;
+			vert[1].uv[1] = 1.0f - (startV + heightV);
 
 			vert[2].positions[0] = posX + width;
 			vert[2].positions[1] = posY - height;
 			vert[2].uv[0] = startU + widthU;
-			vert[2].uv[1] = startV;
+			vert[2].uv[1] = 1.0f - (startV + heightV);
 
 			vert[3].positions[0] = posX + width;
 			vert[3].positions[1] = posY;
 			vert[3].uv[0] = startU + widthU;
-			vert[3].uv[1] = startV + heightV;
+			vert[3].uv[1] = 1.0f - startV;
 
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -213,4 +213,44 @@ GLuint Shape::GetVBO() {
 
 GLuint Shape::GetIBO() {
 	return IBO;
+}
+
+void Shape::SetUVLength(float in_frameWidth, float in_frameHeight) {
+	while (in_frameWidth > 1.0f) {
+		in_frameWidth--;
+	}
+	widthU = in_frameWidth;
+	while (in_frameHeight > 1.0f) {
+		in_frameHeight--;
+	}
+	heightV = in_frameHeight;
+	hasChanged = true;
+}
+
+void Shape::SetUVStart(float in_startU, float in_startV) {
+	while (in_startU > 1.0f) {
+		in_startU--;
+	}
+	startU = in_startU;
+	while (in_startV > 1.0f) {
+		in_startV--;
+	}
+	startV = in_startV;
+	hasChanged = true;
+}
+
+float Shape::GetUStart() {
+	return startU;
+}
+
+float Shape::GetVStart() {
+	return startV;
+}
+
+float Shape::GetULength() {
+	return widthU;
+}
+
+float Shape::GetVLength() {
+	return heightV;
 }

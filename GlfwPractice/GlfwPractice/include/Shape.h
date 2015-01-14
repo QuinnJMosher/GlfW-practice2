@@ -34,16 +34,14 @@ public:
 	GLuint GetVBO();
 	GLuint GetIBO();
 
-	void SetupUV(int in_framesWide, int in_framesTall);
-	void SetFrame(int in_framesWide, int in_framesTall);
+	void SetUVLength(float in_frameWidth, float in_frameHeight);//takes percentage values
+	void SetUVStart(float in_startU, float in_startV);//takes percentage values
 
-	void NextFrameU();
-	void SetFrameU(int in_frame);
-	int GetCurrentFrameU();
+	float GetUStart();
+	float GetVStart();
 
-	void NextFrameV();
-	void SetFrameV(int in_frame);
-	int GetCurrentFrameV();
+	float GetULength();
+	float GetVLength();
 
 private:
 	GLuint VBO;

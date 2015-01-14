@@ -36,6 +36,10 @@ void RenderObj::Ininitalize(float in_windowHeight, float in_windowWidth, char* w
 
 	//set point size
 	glPointSize(2.0f);
+
+	//ready transparency in textures
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 GLuint RenderObj::CreateShader(GLenum a_eShaderType, const char *a_strShaderFile) {
