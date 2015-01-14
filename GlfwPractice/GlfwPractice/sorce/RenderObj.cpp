@@ -10,13 +10,14 @@ void RenderObj::OpenWindow(float in_windowHeight, float in_windowWidth, char* in
 	assert(window != nullptr);
 
 	glfwMakeContextCurrent(window);
+
+	windowWidth = in_windowWidth;
+	windowHeight = in_windowHeight;
 }
 
-void RenderObj::Ininitalize(float in_windowHeight, float in_windowWidth, char* windowName) {
-	//start glfw
-	assert(glfwInit());
+void RenderObj::Ininitalize() {
 
-	OpenWindow(in_windowHeight, in_windowWidth, windowName);
+	assert(window != nullptr);
 
 	//start glew
 	assert(glewInit() == GLEW_OK);
@@ -29,7 +30,7 @@ void RenderObj::Ininitalize(float in_windowHeight, float in_windowWidth, char* w
 	MatrixIDFlat = glGetUniformLocation(ProgramFlat, "MVP");
 
 	//make ortho projection
-	orthographicProjection = getOrtho(0, 640, 0, 480, 0, 100);
+	orthographicProjection = getOrtho(0, windowHeight, 0, windowWidth, 0, 100);
 
 	//generate a buffer for the generic buffer
 	glGenBuffers(1, &genericVBO);
