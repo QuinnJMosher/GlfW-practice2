@@ -14,8 +14,8 @@ Shape::Shape(shapeType in_type, float in_posX, float in_posY, float in_width, fl
 	color = in_color;
 
 	//texture vars
-	startU = 0;
-	startV = 0;
+	startU = 0.0f;
+	startV = 0.0f;
 	widthU = 1.0f;
 	heightV = 1.0f;
 
@@ -134,13 +134,13 @@ void Shape::SyncVBO() {
 
 			vert[1].positions[0] = posX;
 			vert[1].positions[1] = posY - height;
-			vert[0].uv[0] = startU;
-			vert[0].uv[1] = startV + heightV;
+			vert[1].uv[0] = startU + widthU;
+			vert[1].uv[1] = startV + heightV;
 
 			vert[2].positions[0] = posX + width;
 			vert[2].positions[1] = posY - height;
-			vert[0].uv[0] = startU + widthU;
-			vert[0].uv[1] = startV + heightV;
+			vert[2].uv[0] = startU;
+			vert[2].uv[1] = startV + heightV;
 
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -172,22 +172,22 @@ void Shape::SyncVBO() {
 			vert[0].positions[0] = posX;
 			vert[0].positions[1] = posY;
 			vert[0].uv[0] = startU;
-			vert[0].uv[1] = startV;
+			vert[0].uv[1] = startV + heightV;
 
 			vert[1].positions[0] = posX;
 			vert[1].positions[1] = posY - height;
-			vert[0].uv[0] = startU;
-			vert[0].uv[1] = startV + heightV;
+			vert[1].uv[0] = startU;
+			vert[1].uv[1] = startV;
 
 			vert[2].positions[0] = posX + width;
 			vert[2].positions[1] = posY - height;
-			vert[0].uv[0] = startU + widthU;
-			vert[0].uv[1] = startV + heightV;
+			vert[2].uv[0] = startU + widthU;
+			vert[2].uv[1] = startV;
 
 			vert[3].positions[0] = posX + width;
 			vert[3].positions[1] = posY;
-			vert[0].uv[0] = startU + widthU;
-			vert[0].uv[1] = startV;
+			vert[3].uv[0] = startU + widthU;
+			vert[3].uv[1] = startV + heightV;
 
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);

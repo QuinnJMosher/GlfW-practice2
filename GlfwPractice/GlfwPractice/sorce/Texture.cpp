@@ -1,9 +1,9 @@
 #include "Texture.h"
 
-Texture::Texture(const char* in_filename, int in_width, int in_height, int in_BPP) {
-	width = in_width;
-	height = in_height;
-	bpp = in_BPP;
+Texture::Texture(const char* in_filename) {
+	width = 0;
+	height = 0;
+	bpp = 0;
 
 	TextureID = loadTexture(in_filename, width, height, bpp);
 }
