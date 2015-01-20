@@ -6,9 +6,9 @@ class FrameworkInstance {
 public:
 	static void Init();
 	static FrameworkInstance* GetFrwkInst();
+	static void End();
 	GLFWwindow* window;
 	RenderObj renderer;
-	//InputObj inHandeler;
 private:
 	FrameworkInstance();
 	~FrameworkInstance();

@@ -16,3 +16,7 @@ void FrameworkInstance::Init() {
 FrameworkInstance* FrameworkInstance::GetFrwkInst() {
 	return instance;
 }
+
+void FrameworkInstance::End() {
+	instance->~FrameworkInstance();
+}

@@ -1,6 +1,6 @@
 #ifndef _Texture_h_
 #define _Texture_h_
-#include "SOIL.h";
+#include "SOIL.h"
 #include <iostream>
 
 class Texture {

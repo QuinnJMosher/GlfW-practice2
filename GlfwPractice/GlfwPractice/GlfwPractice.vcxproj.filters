@@ -30,6 +30,9 @@
     <ClCompile Include="sorce\FrameworkInstance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sorce\QuinnFramework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\RenderObj.h">

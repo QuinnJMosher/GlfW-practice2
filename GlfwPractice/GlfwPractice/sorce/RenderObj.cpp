@@ -45,6 +45,13 @@ void RenderObj::Ininitalize() {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
+float RenderObj::GetWindowWidth() {
+	return windowWidth;
+}
+float RenderObj::GetWindowHeight() {
+	return windowHeight;
+}
+
 GLuint RenderObj::CreateShader(GLenum a_eShaderType, const char *a_strShaderFile) {
 	std::string strShaderCode;
 	//open shader file

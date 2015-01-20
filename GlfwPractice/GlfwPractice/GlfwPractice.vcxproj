@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="sorce\FrameworkInstance.cpp" />
     <ClCompile Include="sorce\main.cpp" />
+    <ClCompile Include="sorce\QuinnFramework.cpp" />
     <ClCompile Include="sorce\RenderObj.cpp" />
     <ClCompile Include="sorce\Shape.cpp" />
     <ClCompile Include="sorce\Texture.cpp" />

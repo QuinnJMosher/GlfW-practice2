@@ -11,7 +11,7 @@ int OpenWindow(float in_windowHeight, float in_windowWidth, char* in_windowName)
 //a window must be open for the folowing meathods to work
 //window Utility
 bool FrameworkUpdate();
-bool FrameworkClearScreen();
+void FrameworkClearScreen();
 
 float GetWindowWidth();
 float GetWindowHeight();
@@ -21,5 +21,7 @@ void DrawShape(Shape in_shape);
 void DrawSprite(Shape in_shape, Texture in_texture);
 
 //Input Meathods
+bool GetKeyDown(int in_key);
+bool GetKeyUp(int in_key);
 
 #endif 

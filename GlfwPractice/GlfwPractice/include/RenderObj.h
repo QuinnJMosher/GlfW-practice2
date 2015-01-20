@@ -28,6 +28,9 @@ public:
 	void RenderShape(Shape in_shape);
 	void RenderTexture(Shape in_target, Texture in_source);
 
+	float GetWindowWidth();
+	float GetWindowHeight();
+
 private:
 
 	GLuint CreateShader(GLenum a_eShaderType, const char *a_strShaderFile);
