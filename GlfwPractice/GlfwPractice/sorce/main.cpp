@@ -1,25 +1,27 @@
-#include "RenderObj.h"
+//#include "RenderObj.h"
+#include "FrameworkInstance.h"
 
 unsigned int loadTexture(const char* a_pFilename, int & a_iWidth, int & a_iHeight, int & a_iBPP);
 
 int main() {
 
-	RenderObj renderer = RenderObj();
+	//RenderObj renderer = RenderObj();
+	FrameworkInstance::Init();
 
 	assert(glfwInit());
-	renderer.OpenWindow(640, 480, "hello");
-	renderer.Ininitalize();
+	FrameworkInstance::GetFrwkInst()->renderer.OpenWindow(640, 480, "hello");
+	FrameworkInstance::GetFrwkInst()->renderer.Ininitalize();
 	Shape shape = Shape(shapeType::RECTANGLE, 0, 100, 100, 100, Color(1, 1, 1, 1));
 	Texture texture = Texture("img_test.png");
 	//main loop
-	while (!renderer.ShouldClose()) {
+	while (!FrameworkInstance::GetFrwkInst()->renderer.ShouldClose()) {
 		//clear screen
-		renderer.ClearScreen();
+		FrameworkInstance::GetFrwkInst()->renderer.ClearScreen();
 
 		//update
 
 		//draw
-		renderer.RenderTexture(shape, texture);
+		FrameworkInstance::GetFrwkInst()->renderer.RenderTexture(shape, texture);
 	}
 
 	glfwTerminate();

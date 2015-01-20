@@ -18,7 +18,7 @@ public:
 	~RenderObj();
 
 	void Ininitalize();
-	void OpenWindow(float in_windowHeight, float in_windowWidth, char* windowName);
+	GLFWwindow* OpenWindow(float in_windowHeight, float in_windowWidth, char* windowName);
 	bool ShouldClose();
 	void ClearScreen();
 

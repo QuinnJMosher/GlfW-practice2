@@ -5,7 +5,7 @@ RenderObj::~RenderObj() {
 	//destroy stuff
 }
 
-void RenderObj::OpenWindow(float in_windowHeight, float in_windowWidth, char* in_windowName) {
+GLFWwindow* RenderObj::OpenWindow(float in_windowHeight, float in_windowWidth, char* in_windowName) {
 	window = glfwCreateWindow(in_windowHeight, in_windowWidth, in_windowName, NULL, NULL);
 	assert(window != nullptr);
 
@@ -13,6 +13,8 @@ void RenderObj::OpenWindow(float in_windowHeight, float in_windowWidth, char* in
 
 	windowWidth = in_windowWidth;
 	windowHeight = in_windowHeight;
+
+	return window;
 }
 
 void RenderObj::Ininitalize() {
