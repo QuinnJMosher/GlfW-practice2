@@ -66,16 +66,26 @@ float GetMouseX() {
 	glfwGetCursorPos(FrameworkInstance::GetFrwkInst()->window, &x, &y);
 	return x;
 }
+
 float GetMouseY() {
 	double x = 0;
 	double y = 0;
 	glfwGetCursorPos(FrameworkInstance::GetFrwkInst()->window, &x, &y);
 	return GetWindowHeight() - y;
 }
+
 void GetMousePos(float& in_x, float& in_y) {
 	double x = 0;
 	double y = 0;
 		glfwGetCursorPos(FrameworkInstance::GetFrwkInst()->window, &x, &y);
 	in_x = x;
 	in_y = GetWindowHeight() - y;
+}
+
+void HideMouse() {
+	glfwSetInputMode(FrameworkInstance::GetFrwkInst()->window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+}
+
+void ShowMouse() {
+	glfwSetInputMode(FrameworkInstance::GetFrwkInst()->window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }

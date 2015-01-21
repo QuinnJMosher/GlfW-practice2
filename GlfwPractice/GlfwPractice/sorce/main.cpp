@@ -21,7 +21,7 @@ int main() {
 		//clear screen
 		FrameworkClearScreen();
 		//update
-		sh2.SetPos(GetMouseX(), GetMouseY());
+		
 		//draw
 		DrawSprite(sh2, texture);
 		DrawSprite(shape, tex2);

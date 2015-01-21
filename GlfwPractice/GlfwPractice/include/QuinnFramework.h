@@ -23,8 +23,12 @@ void DrawSprite(Shape in_shape, Texture in_texture);
 //Input Meathods
 bool GetKeyDown(int in_key);
 bool GetKeyUp(int in_key);
+
+//mouse Input/util
 float GetMouseX();
 float GetMouseY();
 void GetMousePos(float& in_x, float& in_y);
+void HideMouse();
+void ShowMouse();
 
 #endif 
