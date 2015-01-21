@@ -7,15 +7,33 @@ Shape::Shape(shapeType in_type, float in_posX, float in_posY, float in_width, fl
 	shape = in_type;
 
 	//standard vars
-	posX = in_posX;
-	posY = in_posY;
+	position = glm::vec2(in_posX, in_posY);
 	width = in_width;
 	height = in_height;
 	color = in_color;
 
 	//texture vars
-	startU = 0.0f;
-	startV = 0.0f;
+	UVPosition = glm::vec2(0.0f, 0.0f);
+	widthU = 1.0f;
+	heightV = 1.0f;
+
+	hasChanged = true;
+	SyncVBO();
+}
+Shape::Shape(shapeType in_type, glm::vec2 in_pos, float in_width, float in_height, Color in_color) {
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &IBO);
+	SetIBO();
+	shape = in_type;
+
+	//standard vars
+	position = in_pos;
+	width = in_width;
+	height = in_height;
+	color = in_color;
+
+	//texture vars
+	UVPosition = glm::vec2(0.0f, 0.0f);
 	widthU = 1.0f;
 	heightV = 1.0f;
 
@@ -46,19 +64,28 @@ void Shape::SetColor(float in_r, float in_g, float in_b, float in_a) {
 	color = Color(in_r, in_g, in_b, in_a);
 	hasChanged = true;
 }
+void Shape::SetColor(Color in_color) {
+	color = in_color;
+	hasChanged = true;
+}
 
 void Shape::SetPos(float in_posX, float in_posY) {
-	posX = in_posX;
-	posY = in_posY;
+	position.x = in_posX;
+	position.y = in_posY;
+	hasChanged = true;
+}
+
+void Shape::SetPos(glm::vec2 in_pos) {
+	position = in_pos;
 	hasChanged = true;
 }
 
 float Shape::GetX() {
-	return posX;
+	return position.x;
 }
 
 float Shape::GetY() {
-	return posY;
+	return position.y;
 }
 
 void Shape::SetWidth(float in_Width) {
@@ -79,6 +106,10 @@ float Shape::GetHeight() {
 	return height;
 }
 
+glm::vec2 Shape::GetPos() {
+	return position;
+}
+
 shapeType Shape::GetShape() {
 	return shape;
 }
@@ -92,8 +123,8 @@ void Shape::SyncVBO() {
 		case shapeType::SHPOINT:
 			//ready vert
 			vert = new vertex[1];
-			vert[0].positions[0] = posX;
-			vert[0].positions[1] = posY;
+			vert[0].positions[0] = position.x;
+			vert[0].positions[1] = position.y;
 			vert[0].positions[2] = 0.0f;
 			vert[0].positions[3] = 1.0f;
 
@@ -127,20 +158,20 @@ void Shape::SyncVBO() {
 				vert[i].colors[3] = color.alpha;
 			}
 
-			vert[0].positions[0] = posX + (width / 2);
-			vert[0].positions[1] = posY;
-			vert[0].uv[0] = startU + widthU / 2;
-			vert[0].uv[1] = 1.0f - startV;
+			vert[0].positions[0] = position.x + (width / 2);
+			vert[0].positions[1] = position.y;
+			vert[0].uv[0] = UVPosition.x + widthU / 2;
+			vert[0].uv[1] = 1.0f - UVPosition.y;
 
-			vert[1].positions[0] = posX;
-			vert[1].positions[1] = posY - height;
-			vert[1].uv[0] = startU;
-			vert[1].uv[1] = 1.0f - (startV + heightV);
+			vert[1].positions[0] = position.x;
+			vert[1].positions[1] = position.y - height;
+			vert[1].uv[0] = UVPosition.x;
+			vert[1].uv[1] = 1.0f - (UVPosition.y + heightV);
 
-			vert[2].positions[0] = posX + width;
-			vert[2].positions[1] = posY - height;
-			vert[2].uv[0] = startU + widthU;
-			vert[2].uv[1] = 1.0f - (startV + heightV);
+			vert[2].positions[0] = position.x + width;
+			vert[2].positions[1] = position.y - height;
+			vert[2].uv[0] = UVPosition.x + widthU;
+			vert[2].uv[1] = 1.0f - (UVPosition.y + heightV);
 
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -169,25 +200,25 @@ void Shape::SyncVBO() {
 				vert[i].colors[3] = color.alpha;
 			}
 
-			vert[0].positions[0] = posX;
-			vert[0].positions[1] = posY;
-			vert[0].uv[0] = startU;
-			vert[0].uv[1] = 1.0f - startV;
+			vert[0].positions[0] = position.x;
+			vert[0].positions[1] = position.y;
+			vert[0].uv[0] = UVPosition.x;
+			vert[0].uv[1] = 1.0f - UVPosition.y;
 
-			vert[1].positions[0] = posX;
-			vert[1].positions[1] = posY - height;
-			vert[1].uv[0] = startU;
-			vert[1].uv[1] = 1.0f - (startV + heightV);
+			vert[1].positions[0] = position.x;
+			vert[1].positions[1] = position.y - height;
+			vert[1].uv[0] = UVPosition.x;
+			vert[1].uv[1] = 1.0f - (UVPosition.y + heightV);
 
-			vert[2].positions[0] = posX + width;
-			vert[2].positions[1] = posY - height;
-			vert[2].uv[0] = startU + widthU;
-			vert[2].uv[1] = 1.0f - (startV + heightV);
+			vert[2].positions[0] = position.x + width;
+			vert[2].positions[1] = position.y - height;
+			vert[2].uv[0] = UVPosition.x + widthU;
+			vert[2].uv[1] = 1.0f - (UVPosition.y + heightV);
 
-			vert[3].positions[0] = posX + width;
-			vert[3].positions[1] = posY;
-			vert[3].uv[0] = startU + widthU;
-			vert[3].uv[1] = 1.0f - startV;
+			vert[3].positions[0] = position.x + width;
+			vert[3].positions[1] = position.y;
+			vert[3].uv[0] = UVPosition.x + widthU;
+			vert[3].uv[1] = 1.0f - UVPosition.y;
 
 			//set VBO
 			glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -231,20 +262,35 @@ void Shape::SetUVStart(float in_startU, float in_startV) {
 	while (in_startU > 1.0f) {
 		in_startU--;
 	}
-	startU = in_startU;
+	UVPosition.x = in_startU;
 	while (in_startV > 1.0f) {
 		in_startV--;
 	}
-	startV = in_startV;
+	UVPosition.y = in_startV;
+	hasChanged = true;
+}
+
+void Shape::SetUVStart(glm::vec2 in_startUV) {
+	while (in_startUV.x > 1.0f) {
+		in_startUV.x--;
+	}
+	while (in_startUV.y > 1.0f) {
+		in_startUV.y--;
+	}
+	UVPosition = in_startUV;
 	hasChanged = true;
 }
 
 float Shape::GetUStart() {
-	return startU;
+	return UVPosition.x;
 }
 
 float Shape::GetVStart() {
-	return startV;
+	return UVPosition.y;
+}
+
+glm::vec2 Shape::GetUVStart() {
+	return UVPosition;
 }
 
 float Shape::GetULength() {
