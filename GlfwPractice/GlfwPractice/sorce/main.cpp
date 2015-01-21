@@ -15,18 +15,18 @@ int main() {
 	Texture texture = Texture("img_test.png");
 	Shape sh2 = Shape(shapeType::RECTANGLE, 120, 380, 100, 100);
 	Texture tex2 = Texture("test_rect.png");
+
 	//main loop
 	while (!FrameworkUpdate()) {
 		//clear screen
 		FrameworkClearScreen();
-
 		//update
-
+		sh2.SetPos(GetMouseX(), GetMouseY());
 		//draw
 		DrawSprite(sh2, texture);
 		DrawSprite(shape, tex2);
 	}
 
-	glfwTerminate();
+	FrameworkShutdown();
 	return 0;
 }

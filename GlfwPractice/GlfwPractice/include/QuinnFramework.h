@@ -6,7 +6,7 @@
 int FrameworkInitalize();
 void FrameworkShutdown();
 
-int OpenWindow(float in_windowHeight, float in_windowWidth, char* in_windowName);
+int OpenWindow(float in_windowWidth, float in_windowHeight, char* in_windowName);
 
 //a window must be open for the folowing meathods to work
 //window Utility
@@ -23,5 +23,8 @@ void DrawSprite(Shape in_shape, Texture in_texture);
 //Input Meathods
 bool GetKeyDown(int in_key);
 bool GetKeyUp(int in_key);
+float GetMouseX();
+float GetMouseY();
+void GetMousePos(float& in_x, float& in_y);
 
 #endif 

@@ -5,8 +5,8 @@ RenderObj::~RenderObj() {
 	//destroy stuff
 }
 
-GLFWwindow* RenderObj::OpenWindow(float in_windowHeight, float in_windowWidth, char* in_windowName) {
-	window = glfwCreateWindow(in_windowHeight, in_windowWidth, in_windowName, NULL, NULL);
+GLFWwindow* RenderObj::OpenWindow(float in_windowWidth, float in_windowHeight, char* in_windowName) {
+	window = glfwCreateWindow(in_windowWidth, in_windowHeight, in_windowName, NULL, NULL);
 	assert(window != nullptr);
 
 	glfwMakeContextCurrent(window);
@@ -32,7 +32,7 @@ void RenderObj::Ininitalize() {
 	MatrixIDFlat = glGetUniformLocation(ProgramFlat, "MVP");
 
 	//make ortho projection
-	orthographicProjection = getOrtho(0, windowHeight, 0, windowWidth, 0, 100);
+	orthographicProjection = getOrtho(0, windowWidth, 0, windowHeight, 0, 100);
 
 	//generate a buffer for the generic buffer
 	glGenBuffers(1, &genericVBO);

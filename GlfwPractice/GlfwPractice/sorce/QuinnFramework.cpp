@@ -9,10 +9,11 @@ int FrameworkInitalize() {
 
 void FrameworkShutdown() {
 	FrameworkInstance::End();
+	glfwTerminate();
 }
 
-int OpenWindow(float in_windowHeight, float in_windowWidth, char* in_windowName) {
-	GLFWwindow* tempWinPtr = FrameworkInstance::GetFrwkInst()->renderer.OpenWindow(in_windowHeight, in_windowWidth, in_windowName);
+int OpenWindow(float in_windowWidth, float in_windowHeight, char* in_windowName) {
+	GLFWwindow* tempWinPtr = FrameworkInstance::GetFrwkInst()->renderer.OpenWindow(in_windowWidth, in_windowHeight, in_windowName);
 	if (tempWinPtr == nullptr) {
 		return -1;
 	}
@@ -57,4 +58,24 @@ bool GetKeyUp(int in_key) {
 		return true;
 	}
 	return false;
+}
+
+float GetMouseX() {
+	double x = 0;
+	double y = 0;
+	glfwGetCursorPos(FrameworkInstance::GetFrwkInst()->window, &x, &y);
+	return x;
+}
+float GetMouseY() {
+	double x = 0;
+	double y = 0;
+	glfwGetCursorPos(FrameworkInstance::GetFrwkInst()->window, &x, &y);
+	return GetWindowHeight() - y;
+}
+void GetMousePos(float& in_x, float& in_y) {
+	double x = 0;
+	double y = 0;
+		glfwGetCursorPos(FrameworkInstance::GetFrwkInst()->window, &x, &y);
+	in_x = x;
+	in_y = GetWindowHeight() - y;
 }
