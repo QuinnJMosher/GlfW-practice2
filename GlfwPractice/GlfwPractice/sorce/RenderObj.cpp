@@ -351,7 +351,7 @@ void RenderObj::RenderShape(Shape in_shape) {
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float) * 4));
 
 	switch (in_shape.GetShape()) {
-	case shapeType::SHPOINT:
+	case shapeType::SH_POINT:
 		glDrawArrays(GL_POINTS, 0, 1);
 		break;
 	case shapeType::TRIANGLE:

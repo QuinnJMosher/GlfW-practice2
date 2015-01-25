@@ -120,7 +120,7 @@ void Shape::SyncVBO() {
 
 	if (hasChanged) {
 		switch(shape) {
-		case shapeType::SHPOINT:
+		case shapeType::SH_POINT:
 			//ready vert
 			vert = new vertex[1];
 			vert[0].positions[0] = position.x;

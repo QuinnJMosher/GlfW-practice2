@@ -8,7 +8,7 @@
 #include "glm.hpp"
 
 enum shapeType {
-	SHPOINT,
+	SH_POINT,
 	TRIANGLE,
 	RECTANGLE
 };
