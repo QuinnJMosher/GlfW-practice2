@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="sorce\Animation.cpp" />
     <ClCompile Include="sorce\FrameworkInstance.cpp" />
     <ClCompile Include="sorce\main.cpp" />
     <ClCompile Include="sorce\QuinnFramework.cpp" />

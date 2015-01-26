@@ -8,6 +8,14 @@ Texture::Texture(const char* in_filename) {
 	TextureID = loadTexture(in_filename, width, height, bpp);
 }
 
+Texture::Texture() {
+	width = 0;
+	height = 0;
+	bpp = 0;
+
+	TextureID = 0;
+}
+
 Texture::~Texture() { }
 
 unsigned int Texture::GetTextureID() {

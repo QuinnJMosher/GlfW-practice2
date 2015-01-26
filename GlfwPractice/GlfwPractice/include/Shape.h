@@ -17,6 +17,7 @@ class Shape {
 public:
 	Shape(shapeType in_type, float in_posX, float in_posY, float in_width, float in_height, Color in_color = Color(1, 1, 1, 1));
 	Shape(shapeType in_type, glm::vec2 in_pos, float in_width, float in_height, Color in_color = Color(1, 1, 1, 1));
+	Shape();
 	~Shape();
 
 	void SetColor(float in_r, float in_g, float in_b, float in_a);//takes percent values

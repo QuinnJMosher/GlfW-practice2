@@ -40,6 +40,9 @@ Shape::Shape(shapeType in_type, glm::vec2 in_pos, float in_width, float in_heigh
 	hasChanged = true;
 	SyncVBO();
 }
+Shape::Shape() {
+
+}
 Shape::~Shape() { /*destroy buffer?*/ }
 
 void Shape::SetIBO() {

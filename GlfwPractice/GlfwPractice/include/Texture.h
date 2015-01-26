@@ -6,6 +6,7 @@
 class Texture {
 public:
 	Texture(const char* in_filename);
+	Texture();
 	~Texture();
 
 	unsigned int GetTextureID();
