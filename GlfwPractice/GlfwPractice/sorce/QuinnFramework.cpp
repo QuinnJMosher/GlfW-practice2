@@ -46,6 +46,10 @@ void DrawSprite(Shape in_shape, Texture in_texture) {
 	FrameworkInstance::GetFrwkInst()->renderer.RenderTexture(in_shape, in_texture);
 }
 
+void DrawAnimation(Animation in_animation) {
+	DrawSprite(in_animation.GetShape(), in_animation.GetTexture());
+}
+
 bool GetKeyDown(int in_key) {
 	if (glfwGetKey(FrameworkInstance::GetFrwkInst()->window, in_key) == GLFW_PRESS) {
 		return true;

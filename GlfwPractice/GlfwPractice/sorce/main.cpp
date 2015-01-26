@@ -1,4 +1,5 @@
 #include "QuinnFramework.h"
+#include "Animation.h"
 
 int main() {
 
@@ -13,15 +14,30 @@ int main() {
 	Texture texture = Texture("img_test.png");
 	Shape sh2 = Shape(shapeType::RECTANGLE, glm::vec2(120, 380), 100, 100);
 	Texture tex2 = Texture("test_rect.png");
+	Animation animation = Animation(texture, sh2, 3, 3);
 	//main loop
+	bool qButtonDown = false;
+	bool wButtonDown = false;
 	while (!FrameworkUpdate()) {
 		//clear screen
 		FrameworkClearScreen();
 		//update
-		
+		if (GetKeyDown('Q') && !qButtonDown) {
+			animation.NextFrameX();
+			qButtonDown = true;
+		} else if (GetKeyUp('Q')) {
+			qButtonDown = false;
+		}
+		if (GetKeyDown('W') && !wButtonDown) {
+			animation.NextFrameY();
+			wButtonDown = true;
+		} else if (GetKeyUp('W')) {
+			wButtonDown = false;
+		}
 		//draw
-		DrawSprite(sh2, texture);
-		DrawSprite(shape, tex2);
+		//DrawSprite(sh2, texture);
+		//DrawSprite(shape, tex2);
+		DrawAnimation(animation);
 	}
 
 	FrameworkShutdown();

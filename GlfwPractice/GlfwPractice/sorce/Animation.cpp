@@ -46,21 +46,21 @@ void Animation::SetFrame(unsigned int in_frameX, unsigned int in_frameY) {
 	currentFrameX = in_frameX;
 	currentFrameY = in_frameY;
 
-	shape.SetUVStart(shape.GetULength() * currentFrameX - 1, shape.GetVLength() * currentFrameY - 1);
+	shape.SetUVStart(shape.GetULength() * (currentFrameX - 1), shape.GetVLength() * (currentFrameY - 1));
 }
 void Animation::NextFrameX() {
 	currentFrameX++;
-	if ((currentFrameX - 1) * shape.GetVLength() > 1) {
+	if ((currentFrameX - 1) * shape.GetULength() >= 1) {
 		currentFrameX = 1;
 	}
-	shape.SetUVStart(shape.GetULength() * currentFrameX - 1, shape.GetVLength());
+	shape.SetUVStart(shape.GetULength() * (currentFrameX - 1), shape.GetVLength() * (currentFrameY - 1));
 }
 void Animation::NextFrameY() {
 	currentFrameY++;
-	if ((currentFrameY - 1) * shape.GetVLength() > 1) {
+	if ((currentFrameY - 1) * shape.GetVLength() >= 1) {
 		currentFrameY = 1;
 	}
-	shape.SetUVStart(shape.GetULength(), shape.GetVLength() * currentFrameY - 1);
+	shape.SetUVStart(shape.GetULength() * (currentFrameX - 1), shape.GetVLength() * (currentFrameY - 1));
 }
 void Animation::NextFrameAll() {
 	NextFrameX();
@@ -109,4 +109,12 @@ unsigned int Animation::GetFramesWide() {
 
 unsigned int Animation::GetFramesTall() {
 	return FramesTall;
+}
+
+Texture Animation::GetTexture() {
+	return spriteSheet;
+}
+
+Shape Animation::GetShape() {
+	return shape;
 }

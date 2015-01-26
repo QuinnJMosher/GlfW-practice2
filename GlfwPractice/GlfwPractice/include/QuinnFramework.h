@@ -1,6 +1,7 @@
 #ifndef _QuinnFramework_h_
 #define _QuinnFramework_h_
 #include "FrameworkInstance.h"
+#include "Animation.h"
 
 //startup/shutdown meathods
 int FrameworkInitalize();
@@ -19,6 +20,7 @@ float GetWindowHeight();
 //drawing meathods
 void DrawShape(Shape in_shape);
 void DrawSprite(Shape in_shape, Texture in_texture);
+void DrawAnimation(Animation in_animation);
 
 //Input Meathods
 bool GetKeyDown(int in_key);

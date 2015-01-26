@@ -28,6 +28,9 @@ public:
 	unsigned int GetFramesWide();
 	unsigned int GetFramesTall();
 
+	Texture GetTexture();
+	Shape GetShape();
+
 private:
 	Texture spriteSheet;
 	Shape shape;
