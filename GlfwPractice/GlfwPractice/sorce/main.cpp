@@ -1,16 +1,16 @@
-#include "RenderObj.h"
+#include "QuinnFramework.h"
 
 int main() {
-	RenderObj renderer = RenderObj();
-	renderer.Ininitalize();
-	renderer.OpenWindow (640, 480, "hello");
-	while (!renderer.ShouldClose()) {
+	FrameworkInitalize();
+	OpenWindow(640, 480, "QuinnFramework");
+	Shape shape = Shape(shapeType::RECTANGLE, 200, 200, 100, 100);
+	while (!FrameworkUpdate()) {
 		//clear screen
-		renderer.ClearScreen();
+		FrameworkClearScreen();
 		//update
 
 		//draw
-		renderer.RenderRectangle(100, 100, 100, 100);
+		DrawShape(shape);
 	}
 
 	return 0;
