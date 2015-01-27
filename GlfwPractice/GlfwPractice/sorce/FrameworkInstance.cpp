@@ -4,7 +4,6 @@ FrameworkInstance* FrameworkInstance::instance = nullptr;
 
 FrameworkInstance::FrameworkInstance() {
 	renderer = RenderObj();
-	//inHandeler = InputObj();
 }
 
 FrameworkInstance::~FrameworkInstance() { }

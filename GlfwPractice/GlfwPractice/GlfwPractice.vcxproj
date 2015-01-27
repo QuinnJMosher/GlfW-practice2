@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sorce\Animation.cpp" />
+    <ClCompile Include="sorce\Font.cpp" />
     <ClCompile Include="sorce\FrameworkInstance.cpp" />
     <ClCompile Include="sorce\main.cpp" />
     <ClCompile Include="sorce\QuinnFramework.cpp" />
@@ -21,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Animation.h" />
+    <ClInclude Include="include\Font.h" />
     <ClInclude Include="include\RenderObj.h" />
     <ClInclude Include="include\Color.h" />
     <ClInclude Include="include\Shape.h" />
@@ -37,6 +39,9 @@
   <ItemGroup>
     <Image Include="img_test.png" />
     <Image Include="test_rect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A4DD63AC-FF2E-462F-A8EE-B0BF82CF2A64}</ProjectGuid>
@@ -74,12 +79,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\glfw-3.0.4.bin.WIN32\include;$(SolutionDir)\glm;$(SolutionDir)\glew-1.11.0\include;$(SolutionDir)\Simple OpenGL Image Library\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\glfw-3.0.4.bin.WIN32\include;$(SolutionDir)\glm;$(SolutionDir)\glew-1.11.0\include;$(SolutionDir)\freetype-2.3.5-1-lib\include\freetype2\;$(SolutionDir)\freetype-2.3.5-1-lib\include;$(SolutionDir)\Simple OpenGL Image Library\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\glfw-3.0.4.bin.WIN32\lib-msvc120;$(SolutionDir)\glew-1.11.0\lib\Release\Win32;$(SolutionDir)\Simple OpenGL Image Library\projects\VC9\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\glfw-3.0.4.bin.WIN32\lib-msvc120;$(SolutionDir)\glew-1.11.0\lib\Release\Win32;$(SolutionDir)\freetype-2.3.5-1-lib\lib\;$(SolutionDir)\Simple OpenGL Image Library\projects\VC9\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;freetype.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

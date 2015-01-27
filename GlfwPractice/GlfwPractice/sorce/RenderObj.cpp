@@ -397,3 +397,7 @@ void RenderObj::RenderTexture(Shape in_target, Texture in_source) {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+
+void RenderObj::RenderChar(Font in_font, char in_char) {
+
+}
