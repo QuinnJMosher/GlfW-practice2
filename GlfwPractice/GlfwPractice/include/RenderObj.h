@@ -49,7 +49,7 @@ private:
 	float* orthographicProjection;
 
 	GLuint genericVBO;
-
+	GLuint textTexture;
 };
 
 #endif

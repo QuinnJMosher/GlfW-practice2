@@ -21,6 +21,7 @@ float GetWindowHeight();
 void DrawShape(Shape in_shape);
 void DrawSprite(Shape in_shape, Texture in_texture);
 void DrawAnimation(Animation in_animation);
+void DrawChar(Font in_font, char in_char);
 
 //Input Meathods
 bool GetKeyDown(int in_key);
