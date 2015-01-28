@@ -1,0 +1,14 @@
+﻿Build started 1/28/2015 11:36:30 AM.
+     1>Project "C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\tinyxml2.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D TINYXML2_EXPORT /D _DEBUG /D _CONSOLE /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\temp\Win32-Debug-Dll\\" /Fd"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\temp\Win32-Debug-Dll\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\tinyxml2.cpp
+         tinyxml2.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\bin\Win32-Debug-Dll\tinyxml2.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\bin\Win32-Debug-Dll\tinyxml2.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\bin\Win32-Debug-Dll\tinyxml2.lib" /MACHINE:X86 /DLL "C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\temp\Win32-Debug-Dll\tinyxml2.obj"
+            Creating library C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\bin\Win32-Debug-Dll\tinyxml2.lib and object C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\bin\Win32-Debug-Dll\tinyxml2.exp
+         tinyxml2.vcxproj -> C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\bin\Win32-Debug-Dll\tinyxml2.dll
+     1>Done Building Project "C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\tinyxml2\tinyxml2\tinyxml2.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.88

@@ -67,6 +67,7 @@
     <None Include="FlatFragmentShader.glsl" />
     <None Include="TexturedFragmentShader.glsl" />
     <None Include="VertexShader.glsl" />
+    <None Include="fonts\Arial.fnt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="img_test.png">
@@ -75,8 +76,8 @@
     <Image Include="test_rect.png">
       <Filter>Resource Files</Filter>
     </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="arial.ttf" />
+    <Image Include="fonts\Arial_0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
