@@ -1,15 +1,26 @@
-﻿Build started 1/27/2015 4:22:03 PM.
+﻿Build started 1/28/2015 10:42:55 AM.
      1>Project "C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\GlfwPractice\GlfwPractice.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glfw-3.0.4.bin.WIN32\include" /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glm" /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glew-1.11.0\include" /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\freetype-2.5.5\include\\" /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\Simple OpenGL Image Library\src" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt sorce\RenderObj.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glfw-3.0.4.bin.WIN32\include" /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glm" /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glew-1.11.0\include" /I"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\Simple OpenGL Image Library\src" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt sorce\Animation.cpp sorce\FrameworkInstance.cpp sorce\main.cpp sorce\QuinnFramework.cpp sorce\RenderObj.cpp sorce\Shape.cpp sorce\Texture.cpp
+         Texture.cpp
+         Shape.cpp
          RenderObj.cpp
      1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\renderobj.cpp(9): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\renderobj.cpp(150): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\renderobj.cpp(152): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\renderobj.cpp(154): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\renderobj.cpp(147): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\renderobj.cpp(149): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\renderobj.cpp(151): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         QuinnFramework.cpp
+     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\quinnframework.cpp(71): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\quinnframework.cpp(78): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\quinnframework.cpp(85): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\quinnframework.cpp(86): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         main.cpp
+         FrameworkInstance.cpp
+         Animation.cpp
+         Generating Code...
+     1>c:\users\quinn.mosher\documents\github\glfw-practice2\glfwpractice\glfwpractice\sorce\texture.cpp(50): warning C4715: 'Texture::loadTexture' : not all control paths return a value
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\Debug\GlfwPractice.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glfw-3.0.4.bin.WIN32\lib-msvc120" /LIBPATH:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glew-1.11.0\lib\Release\Win32" /LIBPATH:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\freetype-2.5.5\objs\vc2010\Win32\\" /LIBPATH:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\Simple OpenGL Image Library\projects\VC9\Release" glfw3.lib opengl32.lib glew32.lib SOIL.lib freetype255.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\Debug\GlfwPractice.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\Debug\GlfwPractice.lib" /MACHINE:X86 Debug\Animation.obj
-         Debug\Font.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\Debug\GlfwPractice.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glfw-3.0.4.bin.WIN32\lib-msvc120" /LIBPATH:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\glew-1.11.0\lib\Release\Win32" /LIBPATH:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\\Simple OpenGL Image Library\projects\VC9\Release" glfw3.lib opengl32.lib glew32.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\Debug\GlfwPractice.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\quinn.mosher\Documents\GitHub\GlfW-practice2\GlfwPractice\Debug\GlfwPractice.lib" /MACHINE:X86 Debug\Animation.obj
          Debug\FrameworkInstance.obj
          Debug\main.obj
          Debug\QuinnFramework.obj
@@ -27,4 +38,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.49
+Time Elapsed 00:00:05.01

@@ -37,9 +37,6 @@ void RenderObj::Ininitalize() {
 	//generate a buffer for the generic buffer
 	glGenBuffers(1, &genericVBO);
 
-	//generate a texture buffer for drawing text
-	glGenTextures(1, &textTexture);
-
 	//set point size
 	glPointSize(2.0f);
 
@@ -396,34 +393,6 @@ void RenderObj::RenderTexture(Shape in_target, Texture in_source) {
 		glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, NULL);
 		break;
 	}
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindTexture(GL_TEXTURE_2D, 0);
-}
-
-void RenderObj::RenderChar(Font in_font, char in_char) {
-	in_font.SetGlyph(in_char);
-	FT_GlyphSlot  slot = (*in_font.GetGlyphSlot());
-
-	glBindTexture(GL_TEXTURE_2D, textTexture);
-	glBufferData(GL_TEXTURE_2D, sizeof(slot->bitmap), NULL, GL_STATIC_DRAW);
-	GLvoid* bufferLoc = glMapBuffer(GL_TEXTURE_2D, GL_WRITE_ONLY);
-
-	memcpy(bufferLoc, &(slot->bitmap), sizeof(slot->bitmap));
-
-
-	glUniformMatrix4fv(MatrixIDFlat, 1, GL_FALSE, orthographicProjection);
-	glUseProgram(ProgramTextured);
-
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(2);
-
-	glBindBuffer(GL_ARRAY_BUFFER, genericVBO);
-	glBindTexture(GL_TEXTURE_2D, textTexture);
-
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (void*)(sizeof(float)* 8));
-	glDrawElements(GL_QUADS, 4, GL_UNSIGNED_BYTE, NULL);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);

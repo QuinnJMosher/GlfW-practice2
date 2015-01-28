@@ -11,7 +11,6 @@
 #include "Vertex.h"
 #include "Shape.h"
 #include "Texture.h"
-#include "Font.h"
 
 class RenderObj {
 public:
@@ -28,7 +27,6 @@ public:
 	void RenderRectangle(float in_posX, float in_posY, float in_Width, float in_height, Color in_color = Color(0, 0, 1, 1));
 	void RenderShape(Shape in_shape);
 	void RenderTexture(Shape in_target, Texture in_source);
-	void RenderChar(Font in_font, char in_char);
 
 	float GetWindowWidth();
 	float GetWindowHeight();
