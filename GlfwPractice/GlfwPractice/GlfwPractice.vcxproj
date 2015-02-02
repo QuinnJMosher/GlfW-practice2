@@ -17,6 +17,7 @@
     <ClCompile Include="sorce\QuinnFramework.cpp" />
     <ClCompile Include="sorce\RenderObj.cpp" />
     <ClCompile Include="sorce\Shape.cpp" />
+    <ClCompile Include="sorce\TextHandeler.cpp" />
     <ClCompile Include="sorce\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -24,6 +25,7 @@
     <ClInclude Include="include\RenderObj.h" />
     <ClInclude Include="include\Color.h" />
     <ClInclude Include="include\Shape.h" />
+    <ClInclude Include="include\TextHandeler.h" />
     <ClInclude Include="include\Texture.h" />
     <ClInclude Include="include\Vertex.h" />
     <ClInclude Include="include\FrameworkInstance.h" />
