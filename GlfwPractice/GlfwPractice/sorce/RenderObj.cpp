@@ -404,11 +404,14 @@ void RenderObj::RenderTexture(Shape in_target, Texture in_source) {
 void RenderObj::RenderText(const char* in_text, float in_posX, float in_posY, Color in_color) {
 	if (textHandeler == nullptr) {
 		SetFont("Arial.fnt");
+		if (textSize == NULL) {
+			SetFontSize(10);
+		}
 	}
 	assert(textHandeler != nullptr);
 
 	Character nextChar = textHandeler->GetChar(in_text[0]);
-	Shape shape = Shape(shapeType::RECTANGLE, in_posX, in_posY, 50, 50, in_color);
+	Shape shape = Shape(shapeType::RECTANGLE, in_posX, in_posY, textSize * nextChar.width * 30, textSize * nextChar.height * 30, in_color);
 	shape.SetUVStart(nextChar.Upos, nextChar.Vpos);
 	shape.SetUVLength(nextChar.width, nextChar.height);
 	RenderTexture(shape, nextChar.texture);
@@ -420,4 +423,8 @@ void RenderObj::SetFont(const char* in_fontname) {
 	}
 
 	textHandeler->SetFont(in_fontname);
+}
+
+void RenderObj::SetFontSize(float in_fontSize) {
+	textSize = in_fontSize;
 }

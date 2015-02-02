@@ -31,6 +31,7 @@ public:
 
 	void RenderText(const char* in_text, float in_posX, float in_posY, Color in_color = Color(1, 1, 1, 1));
 	void SetFont(const char* in_fontname);
+	void SetFontSize(float in_fontSize);
 
 	float GetWindowWidth();
 	float GetWindowHeight();
@@ -52,6 +53,7 @@ private:
 
 	GLuint genericVBO;
 	TextHandeler* textHandeler;
+	float textSize;
 };
 
 #endif
