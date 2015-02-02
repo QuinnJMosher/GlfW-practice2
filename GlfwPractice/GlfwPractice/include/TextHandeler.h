@@ -6,24 +6,7 @@
 #include <string>
 using namespace tinyxml2;
 
-class TextHandeler {
-public:
-	TextHandeler();
-	~TextHandeler();
-
-	void SetFont(std::string in_fontName);//looks for the font file (automatically looks in "fonts" folder)
-	Character GetChar(char in_char);
-	
-private:
-	std::string fontName;
-	Texture fontTexture;
-	XMLDocument fontInfo;
-};
-
-class Character {
-public:
-	Character();
-	~Character();
+struct Character {
 
 	Texture texture;
 
@@ -34,6 +17,20 @@ public:
 	float Xoffset;
 	float YOffset;
 	float advance;
+};
+
+class TextHandeler {
+public:
+	TextHandeler();
+	~TextHandeler();
+
+	void SetFont(std::string in_fontName);
+	Character GetChar(int in_char);
+	
+private:
+	std::string fontName;
+	Texture fontTexture;
+	XMLDocument fontInfo;
 };
 
 #endif

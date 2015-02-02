@@ -43,6 +43,9 @@ void RenderObj::Ininitalize() {
 	//ready transparency in textures
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//null out textHandeler
+	textHandeler = nullptr;
 }
 
 float RenderObj::GetWindowWidth() {
@@ -396,4 +399,25 @@ void RenderObj::RenderTexture(Shape in_target, Texture in_source) {
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void RenderObj::RenderText(const char* in_text, float in_posX, float in_posY, Color in_color) {
+	if (textHandeler == nullptr) {
+		SetFont("Arial.fnt");
+	}
+	assert(textHandeler != nullptr);
+
+	Character nextChar = textHandeler->GetChar(in_text[0]);
+	Shape shape = Shape(shapeType::RECTANGLE, in_posX, in_posY, 50, 50, in_color);
+	shape.SetUVStart(nextChar.Upos, nextChar.Vpos);
+	shape.SetUVLength(nextChar.width, nextChar.height);
+	RenderTexture(shape, nextChar.texture);
+}
+
+void RenderObj::SetFont(const char* in_fontname) {
+	if (textHandeler == nullptr) {
+		textHandeler = new TextHandeler();
+	}
+
+	textHandeler->SetFont(in_fontname);
 }

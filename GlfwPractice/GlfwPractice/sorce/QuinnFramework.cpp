@@ -50,6 +50,10 @@ void DrawAnimation(Animation in_animation) {
 	DrawSprite(in_animation.GetShape(), in_animation.GetTexture());
 }
 
+void DrawString(const char* in_text, float in_xpos, float in_ypos, Color in_color) {
+	FrameworkInstance::GetFrwkInst()->renderer.RenderText(in_text, in_xpos, in_ypos, in_color);
+}
+
 bool GetKeyDown(int in_key) {
 	if (glfwGetKey(FrameworkInstance::GetFrwkInst()->window, in_key) == GLFW_PRESS) {
 		return true;

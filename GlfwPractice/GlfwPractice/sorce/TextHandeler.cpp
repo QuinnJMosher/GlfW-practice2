@@ -5,27 +5,35 @@ TextHandeler::~TextHandeler() { }
 
 void TextHandeler::SetFont(std::string in_fontName) {
 	fontName = in_fontName;
-	bool inRoot = true;
 	if (fontInfo.LoadFile(in_fontName.c_str()) != XML_NO_ERROR) {
-		in_fontName = "fonts/" + in_fontName;
-		inRoot = false;
-		if (fontInfo.LoadFile(in_fontName.c_str()) != XML_NO_ERROR) {
 			throw "file not found";
-		}
 	}
 
 	XMLElement* textureElement = fontInfo.FirstChildElement("font")->FirstChildElement("pages")->FirstChildElement("page");
-	char* textureName;
-	textureElement->Attribute("file", textureName);
-	if (inRoot) {
-		fontTexture = Texture(textureName);
-	} else {
-		std::string txNmAndFtDir = "fonts/" + *textureName;
-		fontTexture = Texture(txNmAndFtDir.c_str);
-	}
+	const char* textureName = textureElement->Attribute("file");
+	fontTexture = Texture(textureName);
 
 }
-Character TextHandeler::GetChar(char in_char);
 
-Character::Character();
-Character::~Character();
+Character TextHandeler::GetChar(int in_char) {
+	Character output;
+	output.texture = fontTexture;
+	XMLElement* element = fontInfo.FirstChildElement("font")->FirstChildElement("chars")->FirstChildElement("char");
+
+	while (element->IntAttribute("id") != in_char && element->IntAttribute("id") <= 255) {
+		element = element->NextSiblingElement();
+	}
+
+	//normalize these
+	output.Upos = element->IntAttribute("x") / (float)fontTexture.width;
+	output.Vpos = element->IntAttribute("y") / (float)fontTexture.height;
+	output.width = element->IntAttribute("width") / (float)fontTexture.width;
+	output.height = element->IntAttribute("height") / (float)fontTexture.height;
+	//thses can be left alone
+	output.Xoffset = element->FloatAttribute("xoffset");
+	output.YOffset = element->FloatAttribute("yoffset");
+	output.advance = element->FloatAttribute("xadvance");
+
+	return output;
+
+}

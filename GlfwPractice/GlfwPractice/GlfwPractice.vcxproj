@@ -32,12 +32,14 @@
     <ClInclude Include="include\QuinnFramework.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Arial.fnt" />
     <None Include="FlatFragmentShader.glsl" />
     <None Include="fonts\Arial.fnt" />
     <None Include="TexturedFragmentShader.glsl" />
     <None Include="VertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Arial_0.png" />
     <Image Include="fonts\Arial_0.png" />
     <Image Include="img_test.png" />
     <Image Include="test_rect.png" />
