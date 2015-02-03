@@ -17,5 +17,6 @@ FrameworkInstance* FrameworkInstance::GetFrwkInst() {
 }
 
 void FrameworkInstance::End() {
+	instance->renderer.End();
 	instance->~FrameworkInstance();
 }

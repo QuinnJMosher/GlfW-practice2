@@ -12,6 +12,13 @@ void FrameworkShutdown() {
 	glfwTerminate();
 }
 
+void DeleteTexture(Texture& target) {
+	GLuint targetId = target.GetTextureID();
+	glDeleteTextures(1, &targetId);
+	target.~Texture();
+
+}
+
 int OpenWindow(float in_windowWidth, float in_windowHeight, char* in_windowName) {
 	GLFWwindow* tempWinPtr = FrameworkInstance::GetFrwkInst()->renderer.OpenWindow(in_windowWidth, in_windowHeight, in_windowName);
 	if (tempWinPtr == nullptr) {

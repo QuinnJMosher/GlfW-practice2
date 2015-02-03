@@ -17,6 +17,14 @@ GLFWwindow* RenderObj::OpenWindow(float in_windowWidth, float in_windowHeight, c
 	return window;
 }
 
+void RenderObj::End() {
+	glDeleteProgram(ProgramFlat);
+	glDeleteProgram(ProgramTextured);
+	glDeleteBuffers(1, &genericVBO);
+	textHandeler->~TextHandeler();
+	glfwDestroyWindow(window);
+}
+
 void RenderObj::Ininitalize() {
 
 	assert(window != nullptr);

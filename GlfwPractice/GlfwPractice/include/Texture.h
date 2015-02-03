@@ -7,7 +7,7 @@ class Texture {
 public:
 	Texture(const char* in_filename);
 	Texture();
-	~Texture();
+	~Texture();//DOES NOT DELETE TEXTURE BUFFER use the framework function DeleteTexture to do so
 
 	unsigned int GetTextureID();
 

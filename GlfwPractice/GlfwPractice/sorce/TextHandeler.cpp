@@ -1,7 +1,10 @@
 #include "TextHandeler.h"
 
 TextHandeler::TextHandeler() { }
-TextHandeler::~TextHandeler() { }
+TextHandeler::~TextHandeler() {
+	DeleteTexture(fontTexture);
+	fontInfo.~XMLDocument();
+}
 
 void TextHandeler::SetFont(std::string in_fontName) {
 	fontName = in_fontName;

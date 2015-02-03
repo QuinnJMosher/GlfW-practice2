@@ -6,6 +6,7 @@
 //startup/shutdown meathods
 int FrameworkInitalize();
 void FrameworkShutdown();
+void DeleteTexture(Texture& target);
 
 int OpenWindow(float in_windowWidth, float in_windowHeight, char* in_windowName);
 
