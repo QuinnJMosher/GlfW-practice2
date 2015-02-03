@@ -2,7 +2,9 @@
 
 TextHandeler::TextHandeler() { }
 TextHandeler::~TextHandeler() {
-	DeleteTexture(fontTexture);
+	GLuint targetId = fontTexture.GetTextureID();
+	glDeleteTextures(1, &targetId);
+	fontTexture.~Texture();
 	fontInfo.~XMLDocument();
 }
 

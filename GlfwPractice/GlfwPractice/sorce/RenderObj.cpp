@@ -21,7 +21,7 @@ void RenderObj::End() {
 	glDeleteProgram(ProgramFlat);
 	glDeleteProgram(ProgramTextured);
 	glDeleteBuffers(1, &genericVBO);
-	textHandeler->~TextHandeler();
+	//textHandeler->~TextHandeler();
 	glfwDestroyWindow(window);
 }
 
@@ -420,14 +420,18 @@ void RenderObj::RenderText(const char* in_text, float in_posX, float in_posY, Co
 
 	float currentX = in_posX;
 	for (int i = 0; in_text[i] != '\0'; i++) {
-		Character nextChar = textHandeler->GetChar(in_text[i]);
+		if (in_text[i] == ' ') {
+			currentX += (textSize / 3) * 2;
+		} else {
+			Character nextChar = textHandeler->GetChar(in_text[i]);
 
-		Shape shape = Shape(shapeType::RECTANGLE, currentX + (nextChar.Xoffset * (textSize / 10)), in_posY - (nextChar.YOffset * (textSize / 10)), textSize * nextChar.width * 30, textSize * nextChar.height * 30, in_color);
-		shape.SetUVStart(nextChar.Upos, nextChar.Vpos);
-		shape.SetUVLength(nextChar.width, nextChar.height);
+			Shape shape = Shape(shapeType::RECTANGLE, currentX + (nextChar.Xoffset * (textSize / 10)), in_posY - (nextChar.YOffset * (textSize / 10)), textSize * nextChar.width * 30, textSize * nextChar.height * 30, in_color);
+			shape.SetUVStart(nextChar.Upos, nextChar.Vpos);
+			shape.SetUVLength(nextChar.width, nextChar.height);
 
-		RenderTexture(shape, nextChar.texture);
-		currentX += nextChar.advance * (textSize / 10) + (textSize / 2);
+			RenderTexture(shape, nextChar.texture);
+			currentX += nextChar.advance * (textSize / 10) + (textSize / 2);
+		}
 	}
 }
 

@@ -3,7 +3,6 @@
 #include "tinyxml2.h"
 #include "Texture.h"
 #include "Shape.h"
-#include "QuinnFramework.h"
 #include <string>
 using namespace tinyxml2;
 
