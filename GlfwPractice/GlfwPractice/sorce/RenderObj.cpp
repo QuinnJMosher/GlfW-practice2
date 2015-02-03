@@ -403,18 +403,24 @@ void RenderObj::RenderTexture(Shape in_target, Texture in_source) {
 
 void RenderObj::RenderText(const char* in_text, float in_posX, float in_posY, Color in_color) {
 	if (textHandeler == nullptr) {
-		SetFont("Arial.fnt");
+		SetFont("Arial2.fnt");
 		if (textSize == NULL) {
 			SetFontSize(10);
 		}
 	}
 	assert(textHandeler != nullptr);
 
-	Character nextChar = textHandeler->GetChar(in_text[0]);
-	Shape shape = Shape(shapeType::RECTANGLE, in_posX, in_posY, textSize * nextChar.width * 30, textSize * nextChar.height * 30, in_color);
-	shape.SetUVStart(nextChar.Upos, nextChar.Vpos);
-	shape.SetUVLength(nextChar.width, nextChar.height);
-	RenderTexture(shape, nextChar.texture);
+	float currentX = in_posX;
+	for (int i = 0; in_text[i] != '\0'; i++) {
+		Character nextChar = textHandeler->GetChar(in_text[i]);
+
+		Shape shape = Shape(shapeType::RECTANGLE, currentX + (nextChar.Xoffset * (textSize / 10)), in_posY - (nextChar.YOffset * (textSize / 10)), textSize * nextChar.width * 30, textSize * nextChar.height * 30, in_color);
+		shape.SetUVStart(nextChar.Upos, nextChar.Vpos);
+		shape.SetUVLength(nextChar.width, nextChar.height);
+
+		RenderTexture(shape, nextChar.texture);
+		currentX += nextChar.advance * (textSize / 10) + (textSize / 2);
+	}
 }
 
 void RenderObj::SetFont(const char* in_fontname) {

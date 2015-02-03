@@ -33,12 +33,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Arial.fnt" />
+    <None Include="Arial2.fnt" />
     <None Include="FlatFragmentShader.glsl" />
     <None Include="fonts\Arial.fnt" />
     <None Include="TexturedFragmentShader.glsl" />
     <None Include="VertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Arial2_0.png" />
     <Image Include="Arial_0.png" />
     <Image Include="fonts\Arial_0.png" />
     <Image Include="img_test.png" />
