@@ -10,7 +10,7 @@ int main() {
 		//update
 
 		//draw
-		DrawString("The brown fox jumped over the lazy dog.", 10.0f, 300.0f);
+		DrawString("The quick brown fox jumped over the lazy dog.", 10.0f, 300.0f);
 	}
 	FrameworkShutdown();
 
