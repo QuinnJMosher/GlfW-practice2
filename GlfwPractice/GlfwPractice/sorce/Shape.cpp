@@ -43,7 +43,11 @@ Shape::Shape(shapeType in_type, glm::vec2 in_pos, float in_width, float in_heigh
 Shape::Shape() {
 
 }
-Shape::~Shape() { /*destroy buffer?*/ }
+Shape::~Shape() { 
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &IBO);
+
+}
 
 void Shape::SetIBO() {
 	//bind IBO
