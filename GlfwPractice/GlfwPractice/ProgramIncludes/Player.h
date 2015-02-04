@@ -1,7 +1,8 @@
 #ifndef _Player_h_
 #define _Player_h_
 #include "Entity.h"
-#include "Animation.h"
+#include "QuinnFramework.h"
+#include "Globals.h"
 
 class Player : public Entity {
 public:
@@ -12,11 +13,9 @@ public:
 	virtual void Update(float in_deltaTime);
 	virtual void Draw();
 
-	virtual bool HasColidedWith(Entity *other);
 	virtual void CollideWith(Entity *other);
 
 private:
-	int hp;
 	float speed;
 
 	Animation sprite;

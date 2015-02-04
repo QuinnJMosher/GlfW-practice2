@@ -12,11 +12,31 @@ void FrameworkShutdown() {
 	glfwTerminate();
 }
 
+void CallExit() {
+	glfwSetWindowShouldClose(FrameworkInstance::GetFrwkInst()->window, GL_TRUE);
+}
+
 void DeleteTexture(Texture& target) {
 	GLuint targetId = target.GetTextureID();
 	glDeleteTextures(1, &targetId);
 	target.~Texture();
 
+}
+
+void DeleteShape(Shape& target) {
+	GLuint targetBuffer = target.GetVBO();
+	glDeleteBuffers(1, &targetBuffer);
+	targetBuffer = target.GetIBO();
+	glDeleteBuffers(1, &targetBuffer);
+	target.~Shape();
+}
+
+void DeleteAnimation(Animation& target) {
+	Texture targetTexture = target.GetTexture();
+	DeleteTexture(targetTexture);
+	Shape targetShape = target.GetShape();
+	DeleteShape(targetShape);
+	target.~Animation();
 }
 
 int OpenWindow(float in_windowWidth, float in_windowHeight, char* in_windowName) {

@@ -1,16 +1,26 @@
 #include "QuinnFramework.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "Globals.h"
 
 int main() {
 	FrameworkInitalize();
-	OpenWindow(640, 480, "FrameworkProgram");
-	SetFontSize(5);
+	OpenWindow(640, 700, "FrameworkProgram");
+	
+	Player player = Player(glm::vec2(GetWindowWidth() / 2, 70 + 5), glm::vec2(100, 70));
+	Enemy  enemy = Enemy();
 	while (!FrameworkUpdate()) {
 		//clear screen
 		FrameworkClearScreen();
 		//update
-
+		player.Update(1.0f / 60);
 		//draw
-		DrawString("The quick brown fox jumped over the lazy dog.", 10.0f, 300.0f);
+		player.Draw();
+
+		//exit check
+		if (GetKeyDown(GLFW_KEY_ESCAPE)) {
+			CallExit();
+		}
 	}
 	FrameworkShutdown();
 

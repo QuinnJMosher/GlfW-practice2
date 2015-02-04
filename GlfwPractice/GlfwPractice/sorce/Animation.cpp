@@ -22,7 +22,7 @@ Animation::Animation(const char* in_spriteSheetName, Shape in_startingShape, uns
 }
 Animation::Animation(Texture in_spriteSheet, float in_startPosX, float in_startposY, float in_startWidth, float in_startHeight, unsigned int in_numFramesWide, unsigned int in_numFramesTall) {
 	spriteSheet = in_spriteSheet;
-	shape = Shape(shapeType::RECTANGLE, in_startPosX, in_startposY, in_startHeight, in_startWidth);
+	shape = Shape(shapeType::RECTANGLE, in_startPosX, in_startposY, in_startWidth, in_startHeight);
 	FramesWide = in_numFramesWide;
 	FramesTall = in_numFramesTall;
 	currentFrameX = 1;
@@ -32,7 +32,7 @@ Animation::Animation(Texture in_spriteSheet, float in_startPosX, float in_startp
 }
 Animation::Animation(const char* in_spriteSheetName, float in_startPosX, float in_startposY, float in_startWidth, float in_startHeight, unsigned int in_numFramesWide, unsigned int in_numFramesTall) {
 	spriteSheet = Texture(in_spriteSheetName);
-	shape = Shape(shapeType::RECTANGLE, in_startPosX, in_startposY, in_startHeight, in_startWidth);
+	shape = Shape(shapeType::RECTANGLE, in_startPosX, in_startposY, in_startWidth, in_startHeight);
 	FramesWide = in_numFramesWide;
 	FramesTall = in_numFramesTall;
 	currentFrameX = 1;

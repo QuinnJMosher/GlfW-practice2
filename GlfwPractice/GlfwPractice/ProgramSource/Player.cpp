@@ -1,16 +1,39 @@
 #include "Player.h"
 
 Player::Player() : Entity() {
-	hp = 100;
 	speed = 10;
+
+	sprite = Animation("ProgramAssets/player.png", position.x, position.y, size.x, size.y, 1, 1);
 }
-Player::Player(glm::vec2 in_pos, glm::vec2 in_size) {
+Player::Player(glm::vec2 in_pos, glm::vec2 in_size) : Entity(in_pos, in_size) {
+	speed = 10;
 
+	sprite = Animation("ProgramAssets/player.png", position.x, position.y, size.x, size.y, 1, 1);
 }
-Player::~Player();
+Player::~Player() {
+	sprite.~Animation();
+}
 
-void Player::Update(float in_deltaTime);
-void Player::Draw();
+void Player::Update(float in_deltaTime) {
+	if (GetKeyDown('A')) {
+		position.x -= speed * in_deltaTime;
+		if (position.x < 0) {
+			position.x = 0;
+		}
+	}
+	if (GetKeyDown('D')) {
+		position.x += speed * in_deltaTime;
+		if (position.x + size.x > GetWindowWidth()) {
+			position.x = GetWindowWidth() - size.x;
+		}
+	}
+}
+void Player::Draw() {
+	sprite.MoveTo(position.x, position.y);
+	DrawAnimation(sprite);
+}
 
-bool Player::HasColidedWith(Entity *other);
-void Player::CollideWith(Entity *other);
+void Player::CollideWith(Entity *other) {
+	other->isAlive = false;
+	GlobalTimesHit++;
+}

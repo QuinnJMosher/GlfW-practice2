@@ -44,8 +44,6 @@ Shape::Shape() {
 
 }
 Shape::~Shape() { 
-	glDeleteBuffers(1, &VBO);
-	glDeleteBuffers(1, &IBO);
 
 }
 

@@ -6,9 +6,14 @@
 //startup/shutdown meathods
 int FrameworkInitalize();
 void FrameworkShutdown();
-void DeleteTexture(Texture& target);
+void CallExit();
 
 int OpenWindow(float in_windowWidth, float in_windowHeight, char* in_windowName);
+
+//data managment
+void DeleteTexture(Texture& target);
+void DeleteShape(Shape& target);
+void DeleteAnimation(Animation& target);
 
 //a window must be open for the folowing meathods to work
 //window Utility

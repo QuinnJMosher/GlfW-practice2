@@ -11,10 +11,10 @@ public:
 	virtual void Update(float in_deltaTime) = 0;
 	virtual void Draw() = 0;
 
-	virtual bool HasColidedWith(Entity *other) = 0;
+	bool HasColidedWith(Entity *other);
 	virtual void CollideWith(Entity *other) = 0;
 
-protected:
+	bool isAlive;
 	glm::vec2 position;
 	glm::vec2 size;
 };

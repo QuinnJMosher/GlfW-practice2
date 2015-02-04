@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ProgramSource\Enemy.cpp" />
     <ClCompile Include="ProgramSource\Entity.cpp" />
     <ClCompile Include="ProgramSource\Player.cpp" />
     <ClCompile Include="sorce\Animation.cpp" />
@@ -32,7 +33,9 @@
     <ClInclude Include="include\Vertex.h" />
     <ClInclude Include="include\FrameworkInstance.h" />
     <ClInclude Include="include\QuinnFramework.h" />
+    <ClInclude Include="ProgramIncludes\Enemy.h" />
     <ClInclude Include="ProgramIncludes\Entity.h" />
+    <ClInclude Include="ProgramIncludes\Globals.h" />
     <ClInclude Include="ProgramIncludes\Player.h" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +49,8 @@
     <Image Include="Arial2_0.png" />
     <Image Include="fonts\Arial_0.png" />
     <Image Include="img_test.png" />
+    <Image Include="ProgramAssets\enemyShip.png" />
+    <Image Include="ProgramAssets\player.png" />
     <Image Include="test_rect.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
