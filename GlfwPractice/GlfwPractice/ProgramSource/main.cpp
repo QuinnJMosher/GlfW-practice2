@@ -3,7 +3,7 @@
 int main() {
 	FrameworkInitalize();
 	OpenWindow(640, 480, "FrameworkProgram");
-	SetFontSize(7);
+	SetFontSize(5);
 	while (!FrameworkUpdate()) {
 		//clear screen
 		FrameworkClearScreen();

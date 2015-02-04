@@ -54,6 +54,7 @@ void RenderObj::Ininitalize() {
 
 	//null out textHandeler
 	textHandeler = nullptr;
+	SetFontSize(10);
 }
 
 float RenderObj::GetWindowWidth() {
@@ -412,9 +413,6 @@ void RenderObj::RenderTexture(Shape in_target, Texture in_source) {
 void RenderObj::RenderText(const char* in_text, float in_posX, float in_posY, Color in_color) {
 	if (textHandeler == nullptr) {
 		SetFont("Arial2.fnt");
-		if (textSize == NULL) {
-			SetFontSize(10);
-		}
 	}
 	assert(textHandeler != nullptr);
 
