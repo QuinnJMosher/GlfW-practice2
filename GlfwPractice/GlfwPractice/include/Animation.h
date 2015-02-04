@@ -9,6 +9,7 @@ public:
 	Animation(const char* in_spriteSheetName, Shape in_startingShape, unsigned int in_numFramesWide, unsigned int in_numFramesTall);
 	Animation(Texture in_spriteSheet, float in_startPosX, float in_startposY, float in_startWidth, float in_startHeight, unsigned int in_numFramesWide, unsigned int in_numFramesTall);
 	Animation(const char* in_spriteSheetName, float in_startPosX, float in_startposY, float in_startWidth, float in_startHeight, unsigned int in_numFramesWide, unsigned int in_numFramesTall);
+	Animation() { }
 	~Animation();
 	
 	void SetFrame(unsigned int in_frameX, unsigned int in_frameY);

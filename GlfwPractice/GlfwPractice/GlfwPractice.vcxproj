@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ProgramSource\Entity.cpp" />
+    <ClCompile Include="ProgramSource\Player.cpp" />
     <ClCompile Include="sorce\Animation.cpp" />
     <ClCompile Include="sorce\FrameworkInstance.cpp" />
     <ClCompile Include="ProgramSource\main.cpp" />
@@ -30,6 +32,8 @@
     <ClInclude Include="include\Vertex.h" />
     <ClInclude Include="include\FrameworkInstance.h" />
     <ClInclude Include="include\QuinnFramework.h" />
+    <ClInclude Include="ProgramIncludes\Entity.h" />
+    <ClInclude Include="ProgramIncludes\Player.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Arial2.fnt" />
