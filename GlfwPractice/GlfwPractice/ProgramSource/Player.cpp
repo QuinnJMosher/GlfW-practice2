@@ -1,12 +1,12 @@
 #include "Player.h"
 
 Player::Player() : Entity() {
-	speed = 10;
+	speed = 300;
 
 	sprite = Animation("ProgramAssets/player.png", position.x, position.y, size.x, size.y, 1, 1);
 }
 Player::Player(glm::vec2 in_pos, glm::vec2 in_size) : Entity(in_pos, in_size) {
-	speed = 10;
+	speed = 300;
 
 	sprite = Animation("ProgramAssets/player.png", position.x, position.y, size.x, size.y, 1, 1);
 }
@@ -35,5 +35,5 @@ void Player::Draw() {
 
 void Player::CollideWith(Entity *other) {
 	other->isAlive = false;
-	GlobalTimesHit++;
+	//GlobalTimesHit++;
 }

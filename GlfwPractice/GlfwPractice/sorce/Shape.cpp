@@ -1,9 +1,9 @@
 #include "Shape.h"
 
 Shape::Shape(shapeType in_type, float in_posX, float in_posY, float in_width, float in_height, Color in_color) {
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &IBO);
-	SetIBO();
+	VBO = 0;
+	IBO = 0;
+
 	shape = in_type;
 
 	//standard vars
@@ -18,12 +18,11 @@ Shape::Shape(shapeType in_type, float in_posX, float in_posY, float in_width, fl
 	heightV = 1.0f;
 
 	hasChanged = true;
-	SyncVBO();
 }
 Shape::Shape(shapeType in_type, glm::vec2 in_pos, float in_width, float in_height, Color in_color) {
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &IBO);
-	SetIBO();
+	VBO = 0;
+	IBO = 0;
+
 	shape = in_type;
 
 	//standard vars
@@ -38,7 +37,6 @@ Shape::Shape(shapeType in_type, glm::vec2 in_pos, float in_width, float in_heigh
 	heightV = 1.0f;
 
 	hasChanged = true;
-	SyncVBO();
 }
 Shape::Shape() {
 
@@ -120,6 +118,14 @@ shapeType Shape::GetShape() {
 }
 
 void Shape::SyncVBO() {
+	if (VBO == 0) {
+		glGenBuffers(1, &VBO);
+	}
+	if (IBO == 0) {
+		glGenBuffers(1, &IBO);
+		SetIBO();
+	}
+
 	vertex* vert;
 	GLvoid* vBuffer;
 

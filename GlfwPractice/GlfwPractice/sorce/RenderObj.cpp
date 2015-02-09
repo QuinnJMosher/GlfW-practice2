@@ -380,8 +380,8 @@ void RenderObj::RenderShape(Shape in_shape) {
 void RenderObj::RenderTexture(Shape in_target, Texture in_source) {
 	in_target.SyncVBO();
 
-	glUniformMatrix4fv(MatrixIDFlat, 1, GL_FALSE, orthographicProjection);
 	glUseProgram(ProgramTextured);
+	glUniformMatrix4fv(MatrixIDFlat, 1, GL_FALSE, orthographicProjection);
 
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);

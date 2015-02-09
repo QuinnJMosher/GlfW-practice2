@@ -1,5 +1,7 @@
 #ifndef _Enemy_h_
 #define _Enemy_h_
+#include <random>
+#include <ctime>
 #include "Entity.h"
 #include "QuinnFramework.h"
 #include "Shape.h"
@@ -9,7 +11,7 @@
 class Enemy : public Entity {
 public:
 	Enemy();
-	Enemy(glm::vec2 in_pos, glm::vec2 in_size);
+	Enemy(glm::vec2 in_pos);
 	~Enemy();
 
 	virtual void Update(float in_deltaTime);
@@ -22,8 +24,7 @@ public:
 private:
 	float speed;
 
-	static Shape* drawBox;
-	static Texture* enemyTexture;
+	Shape drawBox;
 };
 
 #endif

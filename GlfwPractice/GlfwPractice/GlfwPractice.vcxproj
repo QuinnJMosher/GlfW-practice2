@@ -33,6 +33,7 @@
     <ClInclude Include="include\Vertex.h" />
     <ClInclude Include="include\FrameworkInstance.h" />
     <ClInclude Include="include\QuinnFramework.h" />
+    <ClInclude Include="ProgramIncludes\Bullet.h" />
     <ClInclude Include="ProgramIncludes\Enemy.h" />
     <ClInclude Include="ProgramIncludes\Entity.h" />
     <ClInclude Include="ProgramIncludes\Globals.h" />
