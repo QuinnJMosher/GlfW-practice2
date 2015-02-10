@@ -11,7 +11,7 @@ Player::Player(glm::vec2 in_pos, glm::vec2 in_size) : Entity(in_pos, in_size) {
 	sprite = Animation("ProgramAssets/player.png", position.x, position.y, size.x, size.y, 1, 1);
 }
 Player::~Player() {
-	sprite.~Animation();
+	DeleteAnimation(sprite);
 }
 
 void Player::Update(float in_deltaTime) {

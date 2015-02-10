@@ -42,11 +42,15 @@ void Bullet::CollideWith(Entity* other) {
 }
 
 void Bullet::DeleteStaticInfo() {
-	DeleteShape(*bulletDrawBox);
-	bulletDrawBox->~Shape();
-	bulletDrawBox = nullptr;
+	if (bulletDrawBox != nullptr) {
+		DeleteShape(*bulletDrawBox);
+		bulletDrawBox->~Shape();
+		bulletDrawBox = nullptr;
+	}
 
-	DeleteTexture(*bulletTex);
-	bulletTex->~Texture();
-	bulletTex = nullptr;
+	if (bulletTex != nullptr) {
+		DeleteTexture(*bulletTex);
+		bulletTex->~Texture();
+		bulletTex = nullptr;
+	}
 }

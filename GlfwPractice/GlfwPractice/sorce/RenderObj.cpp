@@ -175,13 +175,15 @@ bool RenderObj::ShouldClose() {
 		return true;
 	}
 	glfwPollEvents();
-	glfwSwapBuffers(window);
+	
 	return false;
 }
 
 void RenderObj::ClearScreen() {
+	glfwSwapBuffers(window);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+	
 }
 
 void RenderObj::RenderTriangle(float in_posX, float in_posY, float in_baseWidth, float in_height, Color in_color) {

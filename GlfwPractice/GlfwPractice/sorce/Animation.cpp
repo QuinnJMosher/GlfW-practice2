@@ -111,10 +111,10 @@ unsigned int Animation::GetFramesTall() {
 	return FramesTall;
 }
 
-Texture Animation::GetTexture() {
+Texture& Animation::GetTexture() {
 	return spriteSheet;
 }
 
-Shape Animation::GetShape() {
+Shape& Animation::GetShape() {
 	return shape;
 }

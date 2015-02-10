@@ -26,77 +26,86 @@ int main() {
 	glfwSetTime(0);
 	float deltaTime = glfwGetTime();
 
+	//ready frame limiter
+	float fLimitTime = 0.0f;
+	float fLimitInterval = 1.0f / 40.0f;
+
 	//setup key resrictions
-	bool kKey = false;
 	bool bulletReady = true;
 
 	//start Main loop
 	while (!FrameworkUpdate()) {
-		//clear screen/ ready time
+		//ready time
 		deltaTime = glfwGetTime();
 		glfwSetTime(0);
-		FrameworkClearScreen();
+		
 
-		//update
-		player.Update(deltaTime);
-		enemy->Update(deltaTime);
-		if (bullet != nullptr) {
-			bullet->Update(deltaTime);
-		}
+		//frame limiter
+		fLimitTime += deltaTime;
+		if (fLimitTime >= fLimitInterval) {
+			fLimitTime -= fLimitInterval;
+			//clear screen
+			FrameworkClearScreen();
 
-		//draw text
-		char buffer[25];
-		sprintf_s(buffer, "Enimies Missed: %d", GlobalEnimiesMissed);
-		DrawString(buffer, 5, 25);
-		sprintf_s(buffer, "Enimies Hit: %d", GlobalEnemiesKilled);
-		DrawString(buffer, GetWindowWidth() - 140, 25);
-
-		//draw Actors
-		player.Draw();
-		enemy->Draw();
-		if (bullet != nullptr) {
-			bullet->Draw();
-		}
-
-		//collision detection
-		if (bullet != nullptr && bullet->HasColidedWith(enemy)) {
-			GlobalEnemiesKilled++;
-			bullet->isAlive = false;
-			enemy->isAlive = false;
-		}
-
-		//input reading
-		if (GetKeyDown(' ') && bulletReady) {
-			bullet = new Bullet(glm::vec2(player.position.x + (player.size.x / 2) - 5, player.position.y));
-			bulletReady = false;
-		}
-		if (GetKeyDown('K')) {
-			enemy->isAlive = false;
-			kKey = true;
-		} else if (GetKeyUp('K')) {
-			kKey = false;
-		}
-
-		//check actor status
-		if (!enemy->isAlive) {
-			if (enemy->position.y < 0 - enemy->size.y) {
-				GlobalEnimiesMissed++;
+			//update
+			player.Update(fLimitInterval);
+			enemy->Update(fLimitInterval);
+			if (bullet != nullptr) {
+				bullet->Update(fLimitInterval);
 			}
 
-			enemy->~Enemy();
-			enemy = new Enemy(glm::vec2((rand() % windowWidthInt) + player.size.x / 2, GetWindowHeight()));
-		}
-		if (bullet != nullptr && !bullet->isAlive) {
-			bullet->~Bullet();
-			bullet = nullptr;
-			bulletReady = true;
-		}
+			//draw text
+			char buffer[25];
+			sprintf_s(buffer, "Enimies Missed: %d", GlobalEnimiesMissed);
+			DrawString(buffer, 5, 25);
+			sprintf_s(buffer, "Enimies Hit: %d", GlobalEnemiesKilled);
+			DrawString(buffer, GetWindowWidth() - 140, 25);
 
-		//exit check
-		if (GetKeyDown(GLFW_KEY_ESCAPE)) {
-			CallExit();
+			//draw Actors
+			player.Draw();
+			enemy->Draw();
+			if (bullet != nullptr) {
+				bullet->Draw();
+			}
+
+			//collision detection
+			if (bullet != nullptr && bullet->HasColidedWith(enemy)) {
+				GlobalEnemiesKilled++;
+				bullet->isAlive = false;
+				enemy->isAlive = false;
+			}
+
+			//input reading
+			if (GetKeyDown(' ') && bulletReady) {
+				bullet = new Bullet(glm::vec2(player.position.x + (player.size.x / 2) - 5, player.position.y));
+				bulletReady = false;
+			}
+
+			//check actor status
+			if (!enemy->isAlive) {
+				if (enemy->position.y < 0 - enemy->size.y) {
+					GlobalEnimiesMissed++;
+				}
+
+				enemy->~Enemy();
+				enemy = new Enemy(glm::vec2((rand() % windowWidthInt) + player.size.x / 2, GetWindowHeight()));
+			}
+			if (bullet != nullptr && !bullet->isAlive) {
+				bullet->~Bullet();
+				bullet = nullptr;
+				bulletReady = true;
+			}
+
+			//exit check
+			if (GetKeyDown(GLFW_KEY_ESCAPE)) {
+				CallExit();
+			}
 		}
 	}
+	player.~Player();
+	enemy->~Enemy();
+	//bullet->~Bullet();
+	Bullet::DeleteStaticInfo();
 	FrameworkShutdown();
 
 	return 0;
