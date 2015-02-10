@@ -1,8 +1,8 @@
 #include "Shape.h"
 
 Shape::Shape(shapeType in_type, float in_posX, float in_posY, float in_width, float in_height, Color in_color) {
-	VBO = 0;
-	IBO = 0;
+	VBO = -1;
+	IBO = -1;
 
 	shape = in_type;
 
@@ -20,8 +20,8 @@ Shape::Shape(shapeType in_type, float in_posX, float in_posY, float in_width, fl
 	hasChanged = true;
 }
 Shape::Shape(shapeType in_type, glm::vec2 in_pos, float in_width, float in_height, Color in_color) {
-	VBO = 0;
-	IBO = 0;
+	VBO = -1;
+	IBO = -1;
 
 	shape = in_type;
 
@@ -118,10 +118,10 @@ shapeType Shape::GetShape() {
 }
 
 void Shape::SyncVBO() {
-	if (VBO == 0) {
+	if (VBO == -1) {
 		glGenBuffers(1, &VBO);
 	}
-	if (IBO == 0) {
+	if (IBO == -1) {
 		glGenBuffers(1, &IBO);
 		SetIBO();
 	}

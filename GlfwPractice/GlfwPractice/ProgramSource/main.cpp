@@ -54,20 +54,6 @@ int main() {
 				bullet->Update(fLimitInterval);
 			}
 
-			//draw text
-			char buffer[25];
-			sprintf_s(buffer, "Enimies Missed: %d", GlobalEnimiesMissed);
-			DrawString(buffer, 5, 25);
-			sprintf_s(buffer, "Enimies Hit: %d", GlobalEnemiesKilled);
-			DrawString(buffer, GetWindowWidth() - 140, 25);
-
-			//draw Actors
-			player.Draw();
-			enemy->Draw();
-			if (bullet != nullptr) {
-				bullet->Draw();
-			}
-
 			//collision detection
 			if (bullet != nullptr && bullet->HasColidedWith(enemy)) {
 				GlobalEnemiesKilled++;
@@ -94,6 +80,20 @@ int main() {
 				bullet->~Bullet();
 				bullet = nullptr;
 				bulletReady = true;
+			}
+
+			//draw text
+			char buffer[25];
+			sprintf_s(buffer, "Enimies Missed: %d", GlobalEnimiesMissed);
+			DrawString(buffer, 5, 25);
+			sprintf_s(buffer, "Enimies Hit: %d", GlobalEnemiesKilled);
+			DrawString(buffer, GetWindowWidth() - 140, 25);
+
+			//draw Actors
+			player.Draw();
+			enemy->Draw();
+			if (bullet != nullptr) {
+				bullet->Draw();
 			}
 
 			//exit check

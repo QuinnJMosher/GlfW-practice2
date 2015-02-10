@@ -27,7 +27,7 @@ public:
 	void RenderPoint(float in_x, float in_y, Color in_color = Color(1, 0, 0, 1));
 	void RenderTriangle(float in_posX, float in_posY, float in_baseWidth, float in_height, Color in_color = Color(0, 1, 0, 1));
 	void RenderRectangle(float in_posX, float in_posY, float in_Width, float in_height, Color in_color = Color(0, 0, 1, 1));
-	void RenderShape(Shape in_shape);
+	void RenderShape(Shape& in_shape);
 	void RenderTexture(Shape& in_target, Texture& in_source);
 
 	void RenderText(const char* in_text, float in_posX, float in_posY, Color in_color = Color(1, 1, 1, 1));

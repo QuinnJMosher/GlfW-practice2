@@ -350,7 +350,7 @@ void RenderObj::RenderPoint(float in_x, float in_y, Color in_color) {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void RenderObj::RenderShape(Shape in_shape) {
+void RenderObj::RenderShape(Shape& in_shape) {
 	in_shape.SyncVBO();
 	glUseProgram(ProgramFlat);
 
@@ -416,7 +416,7 @@ void RenderObj::RenderText(const char* in_text, float in_posX, float in_posY, Co
 		SetFont("Arial2.fnt");
 	}
 	assert(textHandeler != nullptr);
-	Shape shape;
+	Shape shape = Shape(shapeType::RECTANGLE, 0, 0, 0, 0, in_color);
 	Character nextChar;
 	float currentX = in_posX;
 	for (int i = 0; in_text[i] != '\0'; i++) {
@@ -425,13 +425,14 @@ void RenderObj::RenderText(const char* in_text, float in_posX, float in_posY, Co
 		} else {
 			nextChar = textHandeler->GetChar(in_text[i]);
 
-			shape = Shape(shapeType::RECTANGLE, currentX + (nextChar.Xoffset * (textSize / 10)), in_posY - (nextChar.YOffset * (textSize / 10)), textSize * nextChar.width * 30, textSize * nextChar.height * 30, in_color);
+			shape.SetPos(currentX + (nextChar.Xoffset * (textSize / 10)), in_posY - (nextChar.YOffset * (textSize / 10)));
+			shape.SetWidth(textSize * nextChar.width * 30);
+			shape.SetHeight(textSize * nextChar.height * 30);
 			shape.SetUVStart(nextChar.Upos, nextChar.Vpos);
 			shape.SetUVLength(nextChar.width, nextChar.height);
 
 			RenderTexture(shape, (*nextChar.texture));
 			currentX += nextChar.advance * (textSize / 10) + (textSize / 2);
-			shape.~Shape();
 		}
 	}
 	GLuint targetBuffer = shape.GetVBO();

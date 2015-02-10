@@ -90,8 +90,9 @@
     <SourcePath>$(VC_SourcePath);$(ProjectDir)\ProgramSource</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\include;</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\include;$(ProjectDir)\ProgramIncludes;</IncludePath>
     <TargetExt>.exe</TargetExt>
+    <SourcePath>$(VC_SourcePath);$(ProjectDir)\ProgramSource</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
