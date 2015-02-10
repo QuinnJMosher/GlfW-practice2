@@ -22,7 +22,7 @@ void TextHandeler::SetFont(std::string in_fontName) {
 
 Character TextHandeler::GetChar(int in_char) {
 	Character output;
-	output.texture = fontTexture;
+	output.texture = &fontTexture;
 	XMLElement* element = fontInfo.FirstChildElement("font")->FirstChildElement("chars")->FirstChildElement("char");
 
 	while (element->IntAttribute("id") != in_char && element->IntAttribute("id") <= 255) {

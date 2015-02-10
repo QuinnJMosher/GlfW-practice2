@@ -1,8 +1,11 @@
 #ifndef _Bullet_h_
 #define _Bullet_h_
 #include "Entity.h"
+#include "QuinnFramework.h"
+#include "Shape.h"
+#include "Texture.h"
 
-class bullet : public Entity {
+class Bullet : public Entity {
 public:
 	Bullet();
 	Bullet(glm::vec2 in_pos);
@@ -15,8 +18,10 @@ public:
 
 	static void DeleteStaticInfo();
 private:
-	static Shape bullteDrawBox;
-	static Texture bulletTex;
+	float speed;
+
+	static Shape* bulletDrawBox;
+	static Texture* bulletTex;
 };
 
 #endif

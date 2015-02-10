@@ -8,7 +8,7 @@ using namespace tinyxml2;
 
 struct Character {
 
-	Texture texture;
+	Texture* texture;
 
 	float Upos;
 	float Vpos;

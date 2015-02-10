@@ -24,9 +24,9 @@ float GetWindowWidth();
 float GetWindowHeight();
 
 //drawing meathods
-void DrawShape(Shape in_shape);
-void DrawSprite(Shape in_shape, Texture in_texture);
-void DrawAnimation(Animation in_animation);
+void DrawShape(Shape& in_shape);
+void DrawSprite(Shape& in_shape, Texture& in_texture);
+void DrawAnimation(Animation& in_animation);
 //text Drawing
 void DrawString(const char* in_text, float in_xpos, float in_ypos, Color in_color = Color(1, 1, 1, 1));
 void SetFontSize(float in_size);

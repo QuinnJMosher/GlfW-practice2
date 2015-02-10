@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ProgramSource\Bullet.cpp" />
     <ClCompile Include="ProgramSource\Enemy.cpp" />
     <ClCompile Include="ProgramSource\Entity.cpp" />
     <ClCompile Include="ProgramSource\Player.cpp" />
@@ -51,6 +52,7 @@
     <Image Include="fonts\Arial_0.png" />
     <Image Include="img_test.png" />
     <Image Include="ProgramAssets\enemyShip.png" />
+    <Image Include="ProgramAssets\laserGreen.png" />
     <Image Include="ProgramAssets\player.png" />
     <Image Include="test_rect.png" />
   </ItemGroup>

@@ -48,6 +48,9 @@
     <ClCompile Include="ProgramSource\Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProgramSource\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\RenderObj.h">
@@ -117,6 +120,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="ProgramAssets\enemyShip.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ProgramAssets\laserGreen.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

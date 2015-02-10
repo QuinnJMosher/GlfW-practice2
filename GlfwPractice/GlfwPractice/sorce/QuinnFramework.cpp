@@ -65,15 +65,15 @@ float GetWindowHeight() {
 	return FrameworkInstance::GetFrwkInst()->renderer.GetWindowHeight();
 }
 
-void DrawShape(Shape in_shape) {
+void DrawShape(Shape& in_shape) {
 	FrameworkInstance::GetFrwkInst()->renderer.RenderShape(in_shape);
 }
 
-void DrawSprite(Shape in_shape, Texture in_texture) {
+void DrawSprite(Shape& in_shape, Texture& in_texture) {
 	FrameworkInstance::GetFrwkInst()->renderer.RenderTexture(in_shape, in_texture);
 }
 
-void DrawAnimation(Animation in_animation) {
+void DrawAnimation(Animation& in_animation) {
 	DrawSprite(in_animation.GetShape(), in_animation.GetTexture());
 }
 
