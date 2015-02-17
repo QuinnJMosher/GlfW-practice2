@@ -126,5 +126,8 @@
     <Image Include="ProgramAssets\laserGreen.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="ProgramAssets\PlayerShip.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

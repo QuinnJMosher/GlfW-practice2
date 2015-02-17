@@ -14,7 +14,7 @@ int main() {
 	srand(time(NULL));
 
 	//setup actors
-	Player player = Player(glm::vec2(GetWindowWidth() / 2, 70 + 35), glm::vec2(100, 70));
+	Player player = Player(glm::vec2(GetWindowWidth() / 2, 90 + 35), glm::vec2(80, 90));
 	int windowWidthInt = GetWindowWidth() - player.size.x;
 	Enemy  *enemy = new Enemy(glm::vec2((rand() % windowWidthInt) + player.size.x / 2, GetWindowHeight()));
 	Bullet *bullet = nullptr;
