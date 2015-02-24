@@ -84,9 +84,9 @@ int main() {
 
 			//draw text
 			char buffer[25];
-			sprintf_s(buffer, "Enimies Missed: %d", GlobalEnimiesMissed);
+			sprintf_s(buffer, "Enemies Missed: %d", GlobalEnimiesMissed);
 			DrawString(buffer, 5, 25);
-			sprintf_s(buffer, "Enimies Hit: %d", GlobalEnemiesKilled);
+			sprintf_s(buffer, "Enemies Hit: %d", GlobalEnemiesKilled);
 			DrawString(buffer, GetWindowWidth() - 140, 25);
 
 			//draw Actors
